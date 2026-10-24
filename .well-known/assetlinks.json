@@ -22,5 +22,17 @@
         "7E:F2:7B:ED:A4:73:31:BF:DA:6D:95:11:ED:E4:69:06:3B:DC:27:C1:F7:4F:D2:DB:D7:2C:04:8A:99:31:43:F8"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.chrissorbadere.mediastream",
+      "sha256_cert_fingerprints": [
+        "7E:F2:7B:ED:A4:73:31:BF:DA:6D:95:11:ED:E4:69:06:3B:DC:27:C1:F7:4F:D2:DB:D7:2C:04:8A:99:31:43:F8"
+      ]
+    }
   }
 ]
