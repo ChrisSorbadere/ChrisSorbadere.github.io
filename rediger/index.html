@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>J'ose rédiger — atelier HG 15 · 5ᵉ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f3f2ee;--ink:#1d2330;--dark:#1b2030;--blue:#1f4d78;--brick:#c4553f;--green:#2e7d4f;--soft:#e9eff5;--softg:#e6f1ea;--red:#C00000}
+html{font-size:clamp(15px,1.45vw,26px)}
+body{background:var(--bg);color:var(--ink);font-family:Arial,"Liberation Sans",sans-serif;line-height:1.4;min-height:100vh;display:flex;flex-direction:column}
+header{background:var(--dark);color:#fff;padding:.6rem 1.2rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between}
+header h1{font-size:1.05rem;font-weight:700}
+nav{display:flex;flex-wrap:wrap;gap:.35rem}
+nav button{background:#2c3448;color:#fff;border:0;border-radius:2rem;padding:.35rem .8rem;font-size:.8rem;cursor:pointer;font-family:inherit}
+nav button.on{background:#fff;color:var(--dark);font-weight:700}
+nav button.done::after{content:" ✓";color:#7fd39b}
+main{flex:1;padding:1.2rem 1.6rem 5rem;max-width:1500px;width:100%;margin:0 auto}
+section{display:none}section.on{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+h2{font-size:1.9rem;margin-bottom:.3rem}
+.lead{font-size:1.05rem;color:#4a5160;margin-bottom:1.1rem}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;color:#fff;background:var(--green);border-radius:2rem;padding:.15rem .7rem;margin-bottom:.5rem}
+.card{background:#fff;border-radius:.8rem;padding:1rem 1.3rem;margin-bottom:1rem;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.big{font-size:1.35rem}
+.row{display:flex;gap:1rem;flex-wrap:wrap}
+.col{flex:1;min-width:260px}
+.btn{font-family:inherit;font-size:1rem;border:0;border-radius:.6rem;padding:.55rem 1.1rem;cursor:pointer;background:var(--blue);color:#fff;font-weight:700}
+.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.btn.green{background:var(--green)}
+.opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.opt{font-family:inherit;font-size:1.15rem;background:var(--soft);border:3px solid transparent;border-radius:.6rem;padding:.5rem 1rem;cursor:pointer;color:var(--ink)}
+.opt.good{background:var(--softg);border-color:var(--green);font-weight:700}
+.opt.try{background:#fbeee0;border-color:#d9902a}
+.blank{display:inline-block;min-width:6em;border-bottom:3px solid var(--blue);text-align:center;color:var(--blue);font-weight:700}
+.fb{margin-top:.6rem;font-size:1rem;min-height:1.4em}
+.fb.ok{color:var(--green);font-weight:700}.fb.hint{color:#9a5b0d}
+.progress{font-size:.95rem;color:#4a5160;margin-bottom:.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}
+.chip{font-family:inherit;font-size:1.1rem;background:#fff;border:2px solid var(--blue);color:var(--blue);border-radius:.5rem;padding:.4rem .8rem;cursor:pointer}
+.chip.used{opacity:.25;pointer-events:none}
+.build{min-height:3.2rem;background:var(--soft);border-radius:.6rem;padding:.6rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:1.2rem}
+.build .chip{border-color:var(--dark);color:var(--dark)}
+.pair{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.6rem}
+.pair .opt{flex:1;min-width:260px;text-align:left;font-size:1.15rem;line-height:1.45}
+textarea{width:100%;font-family:inherit;font-size:1.15rem;line-height:1.55;border:2px solid #c9cdd6;border-radius:.6rem;padding:.6rem .8rem;resize:vertical;min-height:4.5rem;background:#fff}
+textarea:focus{outline:none;border-color:var(--blue)}
+.starters{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0}
+.starter{font-family:inherit;font-size:.95rem;background:#fff;border:1.5px dashed var(--blue);color:var(--blue);border-radius:2rem;padding:.3rem .8rem;cursor:pointer}
+.checks{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.ck{font-size:.95rem;border-radius:2rem;padding:.25rem .8rem;background:#eceef2;color:#666}
+.ck.yes{background:var(--softg);color:var(--green);font-weight:700}
+.ck.yes::before{content:"✓ "}
+.ck.no::before{content:"○ "}
+.part{border-left:.6rem solid var(--blue);padding-left:1rem;margin-bottom:1rem}
+.part.p2{border-color:var(--brick)}.part.p3{border-color:var(--green)}
+.part h3{font-size:1.15rem;margin-bottom:.2rem}
+.part.p1 h3{color:var(--blue)}.part.p2 h3{color:var(--brick)}.part.p3 h3{color:var(--green)}
+.wordbox{display:flex;flex-wrap:wrap;gap:.4rem}
+.w{font-size:.95rem;border:2px solid #c9cdd6;color:#777;border-radius:.4rem;padding:.2rem .6rem}
+.w.yes{border-color:var(--green);background:var(--softg);color:var(--green);font-weight:700}
+.counter{font-size:1.3rem;font-weight:700;color:var(--green)}
+.final{background:#fff;border-radius:.8rem;padding:1.2rem 1.5rem;font-size:1.15rem;line-height:1.7}
+.final p{text-indent:2.2em;margin-bottom:.7rem}
+.final u{text-decoration:none;color:var(--blue);font-weight:700;border-bottom:3px solid var(--blue)}
+.model p{font-size:1.25rem;line-height:1.6;padding:.5rem .8rem;border-radius:.5rem;margin-bottom:.5rem;background:var(--soft)}
+.model .lab{font-size:.85rem;font-weight:700;color:#fff;border-radius:2rem;padding:.1rem .6rem;margin-right:.5rem;vertical-align:middle}
+.hidden{display:none}
+.points{display:grid;grid-template-columns:1fr auto;gap:.35rem 1.5rem;font-size:1.15rem;max-width:900px}
+.points .v{font-weight:700;color:var(--green);text-align:right}
+.points .tot{border-top:2px solid var(--ink);padding-top:.35rem;font-weight:700;font-size:1.3rem}
+.zero{background:#fbeee0;border-radius:.6rem;padding:.6rem 1rem;font-size:1.15rem;margin-top:.8rem}
+.copie{background:#fff;border-radius:.8rem;padding:1.4rem 1.8rem;font-size:1.3rem;line-height:1.55}
+.copie h3{color:var(--red);text-decoration:underline;font-size:1.5rem;margin-bottom:.6rem}
+.copie .q{color:var(--blue);font-weight:700;font-style:italic;margin-bottom:.8rem}
+.copie ol{margin-left:1.6em;margin-bottom:.9rem}
+.copie li{margin-bottom:.4rem}
+.copie .rep{border-top:2px solid #ddd;padding-top:.6rem;margin-top:.4rem}
+.copie .voc b{color:var(--red)}
+footer{position:fixed;bottom:0;left:0;right:0;background:rgba(243,242,238,.96);border-top:1px solid #ddd;padding:.5rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:.6rem}
+.small{font-size:.85rem;color:#666}
+.qr{display:flex;gap:1.2rem;align-items:center;border-top:2px solid #ddd;margin-top:.8rem;padding-top:.8rem}
+.qrimg{width:16rem;height:16rem;flex:0 0 16rem}.qrimg svg{width:100%;height:100%}
+.qr p{font-size:1.4rem;line-height:1.6}.qr .url{font-family:monospace;font-size:1.2rem;color:var(--blue);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>✍️ J'ose rédiger · atelier HG 15</h1>
+  <nav id="nav"></nav>
+</header>
+<main>
+
+<!-- 0 · ÇA RAPPORTE -->
+<section data-t="Départ">
+  <span class="tag">Avant de commencer</span>
+  <h2>Écrire, ça rapporte toujours des points</h2>
+  <p class="lead">Une rédaction, ce n'est pas un texte parfait. C'est <b>des phrases simples, mises bout à bout</b>. Personne n'écrit bien du premier coup : on apprend en essayant.</p>
+  <div class="card">
+    <p class="big" style="margin-bottom:.7rem"><b>Exemple :</b> j'écris seulement <b>trois phrases simples</b>, une pour chaque partie du plan, avec trois mots du cours.</p>
+    <div class="points">
+      <span>Partie 1 : une idée juste sur le Nord et le Sud</span><span class="v">0,5</span>
+      <span>Partie 2 : une idée juste sur une ville ou un pays</span><span class="v">0,5</span>
+      <span>Partie 3 : une idée juste sur qui agit</span><span class="v">0,5</span>
+      <span>3 mots du cours bien employés et soulignés</span><span class="v">0,5</span>
+      <span>Une majuscule au début, un point à la fin</span><span class="v">0,5</span>
+      <span class="tot">Trois phrases simples</span><span class="v tot">jusqu'à 2,5 / 4</span>
+    </div>
+    <p class="zero">Une page blanche : <b>0 point</b>. Chaque phrase écrite est un pas en avant.</p>
+  </div>
+  <p class="lead">Aujourd'hui, on monte <b>marche par marche</b> : d'abord un mot, puis une phrase, puis un paragraphe.</p>
+  <button class="btn green" onclick="go(1)">Marche 1 →</button>
+</section>
+
+<!-- 1 · LE BON MOT -->
+<section data-t="1 · Mot">
+  <span class="tag">Marche 1</span>
+  <h2>Je choisis le bon mot</h2>
+  <p class="lead">Un clic suffit. Si tu te trompes, tu peux réessayer : c'est fait pour ça.</p>
+  <div class="progress" id="q1prog"></div>
+  <div class="card"><p class="big" id="q1text"></p><div class="opts" id="q1opts"></div><p class="fb" id="q1fb"></p></div>
+  <button class="btn ghost" id="q1next" onclick="q1Next()">Phrase suivante →</button>
+</section>
+
+<!-- 2 · L'ORDRE -->
+<section data-t="2 · Ordre">
+  <span class="tag">Marche 2</span>
+  <h2>Je remets la phrase dans l'ordre</h2>
+  <p class="lead">Clique sur les étiquettes dans le bon ordre. <b>Indice :</b> la majuscule montre le début, le point montre la fin. Clique sur une étiquette placée pour l'enlever.</p>
+  <div class="progress" id="q2prog"></div>
+  <div class="card">
+    <div class="build" id="q2build"></div>
+    <div class="chips" id="q2chips"></div>
+    <p class="fb" id="q2fb"></p>
+  </div>
+  <button class="btn ghost" onclick="q2Reset()">Recommencer</button>
+  <button class="btn ghost" id="q2next" onclick="q2Next()">Phrase suivante →</button>
+</section>
+
+<!-- 3 · LA MEILLEURE PHRASE -->
+<section data-t="3 · Choisir">
+  <span class="tag">Marche 3</span>
+  <h2>Quelle phrase est la mieux écrite ?</h2>
+  <p class="lead">Regarde : la majuscule, le point, le mot du cours bien employé, une vraie phrase avec un verbe.</p>
+  <div class="progress" id="q3prog"></div>
+  <div class="card"><div class="pair" id="q3pair"></div><p class="fb" id="q3fb"></p></div>
+  <button class="btn ghost" onclick="q3Next()">Paire suivante →</button>
+</section>
+
+<!-- 4 · UNE PHRASE -->
+<section data-t="4 · Une phrase">
+  <span class="tag">Marche 4</span>
+  <h2>J'écris UNE phrase</h2>
+  <p class="lead">Choisis un début de phrase, puis termine-la. Une seule phrase. Elle n'a pas besoin d'être longue.</p>
+  <div class="card">
+    <div class="starters" id="s4"></div>
+    <textarea id="t4" placeholder="Écris ta phrase ici…"></textarea>
+    <div class="checks" id="c4"></div>
+    <p class="fb" id="f4"></p>
+  </div>
+  <p class="small">Sur ta feuille : écris ta phrase, puis souligne en couleur le mot du cours.</p>
+</section>
+
+<!-- 5 · UN PARAGRAPHE -->
+<section data-t="5 · Paragraphe">
+  <span class="tag">Marche 5</span>
+  <h2>Un paragraphe = trois phrases</h2>
+  <p class="lead"><b>1.</b> l'idée · <b>2.</b> l'explication avec un mot du cours · <b>3.</b> un exemple. Regarde d'abord le modèle de la partie 1, phrase par phrase.</p>
+  <div class="card model" id="m5">
+    <p class="hidden"><span class="lab" style="background:var(--blue)">1 · l'idée</span>Il existe de fortes inégalités de richesse entre les pays du Nord et les pays du Sud.</p>
+    <p class="hidden"><span class="lab" style="background:var(--brick)">2 · l'explication</span>Les pays du Nord ont un <u>PIB</u> par habitant et un <u>IDH</u> élevés, alors que les <u>PMA</u> restent très pauvres.</p>
+    <p class="hidden"><span class="lab" style="background:var(--green)">3 · l'exemple</span>Par exemple, 17 % de la population mondiale possède 68 % des richesses.</p>
+  </div>
+  <button class="btn" id="b5" onclick="reveal5()">Montrer la phrase 1</button>
+  <div class="card" style="margin-top:1rem">
+    <p class="big" style="margin-bottom:.4rem"><b>À toi : la partie 2</b> — à l'intérieur d'un pays ou d'une ville.</p>
+    <div class="part p1"><h3>1 · l'idée</h3><div class="starters" data-for="p5a"></div><textarea id="p5a" rows="2"></textarea></div>
+    <div class="part p2"><h3>2 · l'explication, avec <i>fracture</i> ou <i>seuil de pauvreté</i></h3><div class="starters" data-for="p5b"></div><textarea id="p5b" rows="2"></textarea></div>
+    <div class="part p3"><h3>3 · l'exemple</h3><div class="starters" data-for="p5c"></div><textarea id="p5c" rows="2"></textarea></div>
+    <button class="btn green" onclick="show5()">Voir mon paragraphe</button>
+    <div class="final hidden" id="o5" style="margin-top:.8rem"></div>
+  </div>
+</section>
+
+<!-- 6 · LA RÉDACTION -->
+<section data-t="6 · Rédaction">
+  <span class="tag">Marche 6</span>
+  <h2>Ma rédaction en trois paragraphes</h2>
+  <p class="lead"><b>Sujet :</b> Montre que les inégalités de richesse existent à toutes les échelles, puis dis qui agit pour les réduire.</p>
+  <div class="card">
+    <div class="row" style="align-items:center;margin-bottom:.4rem">
+      <span class="counter" id="cnt6">0 mot sur 9</span>
+      <span class="small" id="lines6">≈ 0 ligne à la main (au moins 8)</span>
+    </div>
+    <div class="wordbox" id="wb6"></div>
+  </div>
+  <div class="card">
+    <div class="part p1"><h3>1) Inégalités entre le Nord et le Sud</h3><div class="starters" data-for="r1"></div><textarea id="r1" rows="4"></textarea></div>
+    <div class="part p2"><h3>2) À l'intérieur d'un pays ou d'une ville</h3><div class="starters" data-for="r2"></div><textarea id="r2" rows="4"></textarea></div>
+    <div class="part p3"><h3>3) Comment faire pour réduire les inégalités</h3><div class="starters" data-for="r3"></div><textarea id="r3" rows="4"></textarea></div>
+    <div class="checks" id="c6"></div>
+    <p class="fb ok" id="f6"></p>
+  </div>
+  <button class="btn green" onclick="show6()">Voir ma rédaction mise au propre</button>
+  <button class="btn ghost" onclick="copy6()">Copier le texte</button>
+  <span class="small" id="cp6"></span>
+  <div class="final hidden" id="o6" style="margin-top:1rem"></div>
+</section>
+
+<!-- 7 · ÉCRAN DE COPIE -->
+<section data-t="À copier">
+  <span class="tag" style="background:var(--red)">Écran de copie</span>
+  <div class="copie">
+    <h3>Méthode : rédiger une réponse en histoire-géographie</h3>
+    <p class="q">Comment réussir une rédaction, même quand on a peur d'écrire ?</p>
+    <p><b>À retenir</b></p>
+    <ol>
+      <li>Une rédaction, ce sont des phrases simples mises bout à bout : une majuscule au début, un point à la fin.</li>
+      <li>J'écris un paragraphe par partie du plan : une idée, une explication avec un mot du cours, un exemple.</li>
+      <li>Chaque phrase juste rapporte des points : une page blanche vaut zéro.</li>
+    </ol>
+    <p class="rep"><b>Repères :</b> 3 parties = 3 paragraphes · au moins 8 lignes · les mots imposés soulignés en couleur.</p>
+    <p class="voc"><b>paragraphe</b> : groupe de phrases sur une même idée.<br><b>retrait</b> : petit espace laissé au début de la première ligne d'un paragraphe.</p>
+  
+  </div>
+</section>
+
+<!-- 8 · MAISON -->
+<section data-t="Maison">
+  <span class="tag">À la maison</span>
+  <h2>Je continue chez moi, à mon rythme</h2>
+  <p class="lead">Personne ne regarde, tu peux essayer, effacer, recommencer. Ce que tu écris reste dans ton navigateur.</p>
+  <div class="card"><div class="qr" style="border:0;margin:0;padding:0"><div class="qrimg"><svg width="33mm" height="33mm" version="1.1" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM12,2H13V3H12zM16,2H17V3H16zM20,2H21V3H20zM22,2H23V3H22zM24,2H25V3H24zM25,2H26V3H25zM26,2H27V3H26zM27,2H28V3H27zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM2,3H3V4H2zM8,3H9V4H8zM10,3H11V4H10zM19,3H20V4H19zM22,3H23V4H22zM24,3H25V4H24zM30,3H31V4H30zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM12,4H13V5H12zM13,4H14V5H13zM16,4H17V5H16zM17,4H18V5H17zM18,4H19V5H18zM20,4H21V5H20zM22,4H23V5H22zM24,4H25V5H24zM26,4H27V5H26zM27,4H28V5H27zM28,4H29V5H28zM30,4H31V5H30zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM13,5H14V6H13zM15,5H16V6H15zM18,5H19V6H18zM19,5H20V6H19zM22,5H23V6H22zM24,5H25V6H24zM26,5H27V6H26zM27,5H28V6H27zM28,5H29V6H28zM30,5H31V6H30zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM11,6H12V7H11zM12,6H13V7H12zM13,6H14V7H13zM14,6H15V7H14zM18,6H19V7H18zM20,6H21V7H20zM21,6H22V7H21zM22,6H23V7H22zM24,6H25V7H24zM26,6H27V7H26zM27,6H28V7H27zM28,6H29V7H28zM30,6H31V7H30zM2,7H3V8H2zM8,7H9V8H8zM13,7H14V8H13zM15,7H16V8H15zM16,7H17V8H16zM18,7H19V8H18zM19,7H20V8H19zM24,7H25V8H24zM30,7H31V8H30zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM25,8H26V9H25zM26,8H27V9H26zM27,8H28V9H27zM28,8H29V9H28zM29,8H30V9H29zM30,8H31V9H30zM10,9H11V10H10zM11,9H12V10H11zM12,9H13V10H12zM14,9H15V10H14zM16,9H17V10H16zM18,9H19V10H18zM21,9H22V10H21zM2,10H3V11H2zM8,10H9V11H8zM10,10H11V11H10zM13,10H14V11H13zM15,10H16V11H15zM16,10H17V11H16zM17,10H18V11H17zM19,10H20V11H19zM22,10H23V11H22zM23,10H24V11H23zM24,10H25V11H24zM27,10H28V11H27zM28,10H29V11H28zM29,10H30V11H29zM2,11H3V12H2zM3,11H4V12H3zM6,11H7V12H6zM9,11H10V12H9zM12,11H13V12H12zM13,11H14V12H13zM14,11H15V12H14zM16,11H17V12H16zM17,11H18V12H17zM19,11H20V12H19zM20,11H21V12H20zM21,11H22V12H21zM23,11H24V12H23zM25,11H26V12H25zM26,11H27V12H26zM28,11H29V12H28zM29,11H30V12H29zM7,12H8V13H7zM8,12H9V13H8zM10,12H11V13H10zM16,12H17V13H16zM17,12H18V13H17zM20,12H21V13H20zM22,12H23V13H22zM23,12H24V13H23zM25,12H26V13H25zM26,12H27V13H26zM2,13H3V14H2zM3,13H4V14H3zM4,13H5V14H4zM5,13H6V14H5zM7,13H8V14H7zM10,13H11V14H10zM11,13H12V14H11zM12,13H13V14H12zM14,13H15V14H14zM16,13H17V14H16zM17,13H18V14H17zM22,13H23V14H22zM23,13H24V14H23zM24,13H25V14H24zM27,13H28V14H27zM2,14H3V15H2zM3,14H4V15H3zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM9,14H10V15H9zM11,14H12V15H11zM14,14H15V15H14zM17,14H18V15H17zM21,14H22V15H21zM22,14H23V15H22zM24,14H25V15H24zM25,14H26V15H25zM30,14H31V15H30zM4,15H5V16H4zM11,15H12V16H11zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM21,15H22V16H21zM22,15H23V16H22zM23,15H24V16H23zM24,15H25V16H24zM25,15H26V16H25zM26,15H27V16H26zM29,15H30V16H29zM30,15H31V16H30zM2,16H3V17H2zM3,16H4V17H3zM4,16H5V17H4zM5,16H6V17H5zM8,16H9V17H8zM11,16H12V17H11zM13,16H14V17H13zM15,16H16V17H15zM17,16H18V17H17zM18,16H19V17H18zM23,16H24V17H23zM27,16H28V17H27zM28,16H29V17H28zM3,17H4V18H3zM5,17H6V18H5zM6,17H7V18H6zM10,17H11V18H10zM11,17H12V18H11zM12,17H13V18H12zM13,17H14V18H13zM14,17H15V18H14zM16,17H17V18H16zM17,17H18V18H17zM20,17H21V18H20zM23,17H24V18H23zM26,17H27V18H26zM28,17H29V18H28zM30,17H31V18H30zM2,18H3V19H2zM4,18H5V19H4zM5,18H6V19H5zM6,18H7V19H6zM8,18H9V19H8zM11,18H12V19H11zM14,18H15V19H14zM15,18H16V19H15zM19,18H20V19H19zM25,18H26V19H25zM27,18H28V19H27zM28,18H29V19H28zM2,19H3V20H2zM3,19H4V20H3zM4,19H5V20H4zM5,19H6V20H5zM6,19H7V20H6zM10,19H11V20H10zM15,19H16V20H15zM17,19H18V20H17zM19,19H20V20H19zM20,19H21V20H20zM21,19H22V20H21zM22,19H23V20H22zM24,19H25V20H24zM25,19H26V20H25zM26,19H27V20H26zM28,19H29V20H28zM29,19H30V20H29zM30,19H31V20H30zM2,20H3V21H2zM3,20H4V21H3zM4,20H5V21H4zM8,20H9V21H8zM9,20H10V21H9zM10,20H11V21H10zM11,20H12V21H11zM12,20H13V21H12zM13,20H14V21H13zM17,20H18V21H17zM19,20H20V21H19zM20,20H21V21H20zM21,20H22V21H21zM25,20H26V21H25zM26,20H27V21H26zM27,20H28V21H27zM30,20H31V21H30zM2,21H3V22H2zM5,21H6V22H5zM6,21H7V22H6zM9,21H10V22H9zM11,21H12V22H11zM12,21H13V22H12zM14,21H15V22H14zM16,21H17V22H16zM17,21H18V22H17zM18,21H19V22H18zM20,21H21V22H20zM23,21H24V22H23zM24,21H25V22H24zM2,22H3V23H2zM4,22H5V23H4zM6,22H7V23H6zM8,22H9V23H8zM10,22H11V23H10zM13,22H14V23H13zM14,22H15V23H14zM19,22H20V23H19zM22,22H23V23H22zM23,22H24V23H23zM24,22H25V23H24zM25,22H26V23H25zM26,22H27V23H26zM28,22H29V23H28zM29,22H30V23H29zM30,22H31V23H30zM10,23H11V24H10zM11,23H12V24H11zM12,23H13V24H12zM13,23H14V24H13zM14,23H15V24H14zM15,23H16V24H15zM16,23H17V24H16zM17,23H18V24H17zM22,23H23V24H22zM26,23H27V24H26zM27,23H28V24H27zM2,24H3V25H2zM3,24H4V25H3zM4,24H5V25H4zM5,24H6V25H5zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM11,24H12V25H11zM12,24H13V25H12zM13,24H14V25H13zM15,24H16V25H15zM16,24H17V25H16zM17,24H18V25H17zM18,24H19V25H18zM21,24H22V25H21zM22,24H23V25H22zM24,24H25V25H24zM26,24H27V25H26zM27,24H28V25H27zM28,24H29V25H28zM2,25H3V26H2zM8,25H9V26H8zM12,25H13V26H12zM14,25H15V26H14zM15,25H16V26H15zM21,25H22V26H21zM22,25H23V26H22zM26,25H27V26H26zM29,25H30V26H29zM2,26H3V27H2zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM11,26H12V27H11zM13,26H14V27H13zM15,26H16V27H15zM18,26H19V27H18zM21,26H22V27H21zM22,26H23V27H22zM23,26H24V27H23zM24,26H25V27H24zM25,26H26V27H25zM26,26H27V27H26zM27,26H28V27H27zM29,26H30V27H29zM2,27H3V28H2zM4,27H5V28H4zM5,27H6V28H5zM6,27H7V28H6zM8,27H9V28H8zM11,27H12V28H11zM13,27H14V28H13zM15,27H16V28H15zM17,27H18V28H17zM18,27H19V28H18zM20,27H21V28H20zM22,27H23V28H22zM23,27H24V28H23zM27,27H28V28H27zM28,27H29V28H28zM30,27H31V28H30zM2,28H3V29H2zM4,28H5V29H4zM5,28H6V29H5zM6,28H7V29H6zM8,28H9V29H8zM12,28H13V29H12zM13,28H14V29H13zM14,28H15V29H14zM15,28H16V29H15zM17,28H18V29H17zM19,28H20V29H19zM20,28H21V29H20zM24,28H25V29H24zM25,28H26V29H25zM26,28H27V29H26zM27,28H28V29H27zM28,28H29V29H28zM29,28H30V29H29zM2,29H3V30H2zM8,29H9V30H8zM11,29H12V30H11zM13,29H14V30H13zM14,29H15V30H14zM17,29H18V30H17zM20,29H21V30H20zM24,29H25V30H24zM25,29H26V30H25zM27,29H28V30H27zM28,29H29V30H28zM30,29H31V30H30zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM5,30H6V31H5zM6,30H7V31H6zM7,30H8V31H7zM8,30H9V31H8zM10,30H11V31H10zM11,30H12V31H11zM16,30H17V31H16zM19,30H20V31H19zM20,30H21V31H20zM21,30H22V31H21zM23,30H24V31H23zM24,30H25V31H24zM26,30H27V31H26zM28,30H29V31H28z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg></div><p><b>Marche 6, chez toi</b><br>Scanne le code ou recopie l'adresse :<br><span class="url">chrissorbadere.github.io/rediger</span></p></div></div>
+</section>
+
+</main>
+<footer>
+  <button class="btn ghost" onclick="go(cur-1)">← Retour</button>
+  <button class="btn" onclick="go(cur+1)">Suite →</button>
+</footer>
+
+<script>
+const S=[...document.querySelectorAll('section')];let cur=0;const done=new Set();
+const nav=document.getElementById('nav');
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.dataset.t;b.onclick=()=>go(i);nav.appendChild(b)});
+function go(i){if(i<0||i>=S.length)return;done.add(cur);cur=i;S.forEach((s,k)=>s.classList.toggle('on',k===i));[...nav.children].forEach((b,k)=>{b.classList.toggle('on',k===i);b.classList.toggle('done',done.has(k)&&k!==i)});scrollTo(0,0);try{location.hash='m'+i}catch(e){}}
+document.addEventListener('keydown',e=>{if(e.target.tagName==='TEXTAREA')return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const mix=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const BRAVO=['Bravo !','Exactement !','Oui, c\'est ça !','Très bien !','Parfait !'];
+const bravo=()=>BRAVO[Math.floor(Math.random()*BRAVO.length)];
+
+/* ---- Marche 1 ---- */
+const Q1=[
+ ['Les pays les plus pauvres du monde sont appelés les ___.','PMA',['PMA','ONG','IDH'],'Les PMA sont les pays les moins avancés.'],
+ ['L\'___ mesure le développement d\'un pays : santé, école, revenus.','IDH',['IDH','PIB','ONU'],'L\'IDH regarde la santé, l\'école et les revenus.'],
+ ['Le Brésil, la Chine et l\'Inde sont des ___ : leur économie se développe vite.','pays émergents',['PMA','pays émergents','ONG'],'Un pays émergent se développe vite.'],
+ ['Une personne qui gagne moins que le ___ est considérée comme pauvre.','seuil de pauvreté',['développement','PIB','seuil de pauvreté'],'Le seuil de pauvreté est un revenu limite.'],
+ ['Médecins sans frontières est une ___ : une association indépendante des États.','ONG',['ONU','ONG','fracture'],'ONG : organisation non gouvernementale.'],
+ ['En Italie, il existe une ___ entre le Nord riche et le Sud plus pauvre.','fracture',['fracture','ONU','IDH'],'Une fracture : une forte inégalité dans un même espace.'],
+ ['L\'___ réunit presque tous les États du monde.','ONU',['ONG','PMA','ONU'],'L\'ONU est une organisation internationale : elle réunit des États.'],
+ ['Le ___ par habitant, c\'est la richesse produite en un an, divisée par le nombre d\'habitants.','PIB',['IDH','PIB','seuil de pauvreté'],'Le PIB mesure la richesse produite.']
+];let i1=0;
+function q1Show(){const q=Q1[i1];document.getElementById('q1prog').textContent='Phrase '+(i1+1)+' sur '+Q1.length;
+ document.getElementById('q1text').innerHTML=esc(q[0]).replace('___','<span class="blank" id="q1b">?</span>');
+ const o=document.getElementById('q1opts');o.innerHTML='';document.getElementById('q1fb').textContent='';document.getElementById('q1fb').className='fb';
+ mix(q[2]).forEach(w=>{const b=document.createElement('button');b.className='opt';b.textContent=w;b.onclick=()=>{const f=document.getElementById('q1fb');
+  if(w===q[1]){b.classList.add('good');document.getElementById('q1b').textContent=w;f.textContent=bravo()+' '+q[3];f.className='fb ok'}
+  else{b.classList.add('try');f.textContent='Pas tout à fait. Relis la phrase et essaie un autre mot.';f.className='fb hint'}};o.appendChild(b)})}
+function q1Next(){i1=(i1+1)%Q1.length;q1Show()}
+
+/* ---- Marche 2 ---- */
+const Q2=[
+ ['Haïti','est un PMA :','c\'est le pays','le plus pauvre','des Amériques.'],
+ ['Les ONG','construisent des écoles','pour aider','les enfants','des pays pauvres.'],
+ ['Dans une même ville,','les riches et les pauvres','vivent souvent','dans des quartiers','séparés.'],
+ ['Le Mexique','est un pays émergent :','son économie','se développe','vite.']
+];let i2=0,placed=[];
+function q2Show(){const q=Q2[i2];placed=[];document.getElementById('q2prog').textContent='Phrase '+(i2+1)+' sur '+Q2.length;
+ const c=document.getElementById('q2chips');c.innerHTML='';document.getElementById('q2fb').textContent='';document.getElementById('q2fb').className='fb';
+ let order=mix(q.map((t,k)=>k));if(order.every((v,k)=>v===k))order.reverse();
+ order.forEach(k=>{const b=document.createElement('button');b.className='chip';b.textContent=q[k];b.dataset.k=k;b.onclick=()=>{placed.push(k);b.classList.add('used');q2Draw()};c.appendChild(b)});q2Draw()}
+function q2Draw(){const q=Q2[i2],d=document.getElementById('q2build');d.innerHTML='';
+ placed.forEach((k,p)=>{const b=document.createElement('button');b.className='chip';b.textContent=q[k];b.onclick=()=>{placed.splice(p,1);document.querySelector('#q2chips [data-k="'+k+'"]').classList.remove('used');q2Draw()};d.appendChild(b)});
+ const f=document.getElementById('q2fb');
+ if(placed.length===q.length){if(placed.every((v,k)=>v===k)){f.textContent=bravo()+' Ta phrase commence par une majuscule et finit par un point.';f.className='fb ok'}
+ else{f.textContent='Presque ! Cherche l\'étiquette avec la majuscule pour commencer, et celle avec le point pour finir.';f.className='fb hint'}}
+ else{f.textContent='';f.className='fb'}}
+function q2Reset(){q2Show()}function q2Next(){i2=(i2+1)%Q2.length;q2Show()}
+
+/* ---- Marche 3 ---- */
+const Q3=[
+ ['les PMA sont des pays pauvres','Les PMA sont les pays les plus pauvres du monde.',1,'Elle commence par une majuscule, finit par un point, et elle est précise.'],
+ ['L\'IDH mesure le développement d\'un pays : la santé, l\'école et les revenus.','L\'IDH, c\'est quand un pays il est riche.',0,'Le mot IDH est bien employé : il ne mesure pas seulement la richesse.'],
+ ['Il y a des inégalités. Partout. Les pauvres.','Les inégalités existent entre les pays, mais aussi à l\'intérieur d\'un même pays.',1,'C\'est une vraie phrase, avec un verbe, qui dit quelque chose de précis.'],
+ ['Le Mexique est un pays émergent : son économie se développe vite.','Le Mexique est une ONG.',0,'Le Mexique est un pays, pas une association : le mot doit être bien employé.'],
+ ['Au Bangladesh, une ONG a créé des écoles flottantes pour que les enfants aillent à l\'école.','au bangladesh y a des écoles sur l\'eau',0,'Majuscules, point, et le mot ONG qui rapporte des points.']
+];let i3=0;
+function q3Show(){const q=Q3[i3];document.getElementById('q3prog').textContent='Paire '+(i3+1)+' sur '+Q3.length;
+ const p=document.getElementById('q3pair');p.innerHTML='';const f=document.getElementById('q3fb');f.textContent='';f.className='fb';
+ [0,1].forEach(k=>{const b=document.createElement('button');b.className='opt';b.innerHTML='<b>'+(k?'B':'A')+'.</b> '+esc(q[k]);b.onclick=()=>{
+  if(k===q[2]){b.classList.add('good');f.textContent=bravo()+' '+q[3];f.className='fb ok'}else{b.classList.add('try');f.textContent='Regarde bien l\'autre phrase : qu\'est-ce qui la rend meilleure ?';f.className='fb hint'}};p.appendChild(b)})}
+function q3Next(){i3=(i3+1)%Q3.length;q3Show()}
+
+/* ---- Mots du cours ---- */
+const WORDS=[['fracture',/fractures?/],['PMA',/\bpma\b/],['seuil de pauvreté',/seuils? de pauvrete/],['ONG',/\bongs?\b/],['PIB',/\bpib\b/],['pays émergent',/pays emergents?/],['IDH',/\bidh\b/],['ONU',/\bonu\b/],['développement',/developpement/]];
+const found=t=>{const n=norm(t);return WORDS.filter(w=>w[1].test(n)).map(w=>w[0])};
+function sentenceChecks(t){t=t.trim();const sents=t.split(/(?<=[.!?])\s+/).filter(Boolean);
+ return{maj:t.length>0&&sents.every(s=>/^[«"\s]*[A-ZÀ-ÖØ-Ý]/.test(s)),pt:/[.!?»"]\s*$/.test(t),n:sents.length}}
+function underline(t){let h=esc(t);const n=norm(h);const marks=[];
+ WORDS.forEach(w=>{const re=new RegExp(w[1].source,'g');let m;while((m=re.exec(n))){marks.push([m.index,m.index+m[0].length])}});
+ marks.sort((a,b)=>b[0]-a[0]);let last=Infinity;marks.forEach(([a,b])=>{if(b<=last){h=h.slice(0,a)+'<u>'+h.slice(a,b)+'</u>'+h.slice(b);last=a}});return h}
+
+/* starters */
+const ST={
+ s4:[['Les PMA sont…'],['Une ONG, c\'est…'],['L\'ONU aide…'],['Dans une ville, il y a une fracture entre…'],['Un pays émergent est…']],
+ p5a:[['Les inégalités existent aussi à l\'intérieur d\'un pays ou d\'une ville.']],
+ p5b:[['Il y a une fracture entre…'],['Certains habitants vivent sous le seuil de pauvreté…']],
+ p5c:[['Par exemple, en Italie,…'],['Par exemple, à Marseille,…']],
+ r1:[['Il existe de fortes inégalités entre…'],['Les pays du Nord ont un PIB…'],['Les PMA sont…'],['Les pays émergents…']],
+ r2:[['Les inégalités existent aussi à l\'intérieur…'],['Il y a une fracture entre…'],['Sous le seuil de pauvreté,…']],
+ r3:[['Pour réduire les inégalités,…'],['L\'ONU…'],['Les ONG…'],['Par exemple, au Bangladesh,…']]
+};
+function fillStarters(box,id){(ST[id]||[]).forEach(([fr])=>{const b=document.createElement('button');b.className='starter';b.innerHTML=esc(fr)+'';
+ b.onclick=()=>{const t=document.getElementById(id);const add=fr.replace(/…$/,' ');t.value=(t.value.trim()?t.value.trim()+' ':'')+add;t.focus();t.dispatchEvent(new Event('input'))};box.appendChild(b)})}
+fillStarters(document.getElementById('s4'),'s4');
+document.querySelectorAll('.starters[data-for]').forEach(b=>fillStarters(b,b.dataset.for));
+
+/* ---- Marche 4 ---- */
+const t4=document.getElementById('t4');
+t4.addEventListener('input',()=>{const t=t4.value,c=sentenceChecks(t),w=found(t);
+ document.getElementById('c4').innerHTML=[['Une majuscule au début',c.maj],['Un point à la fin',c.pt],['Un mot du cours'+(w.length?' : '+w.join(', '):''),w.length>0]].map(([l,ok])=>'<span class="ck '+(ok?'yes':'no')+'">'+esc(l)+'</span>').join('');
+ const f=document.getElementById('f4');
+ if(c.maj&&c.pt&&w.length&&t.trim().split(/\s+/).length>=5){f.textContent='Bravo, tu as écrit une vraie phrase avec un mot du cours. C\'est le début d\'une rédaction !';f.className='fb ok'}
+ else if(t.trim().length>3){f.textContent='Continue, tu y es presque. Regarde ce qui n\'est pas encore coché.';f.className='fb hint'}else{f.textContent='';f.className='fb'}});
+t4.dispatchEvent(new Event('input'));
+
+/* ---- Marche 5 ---- */
+let r5=0;function reveal5(){const ps=document.querySelectorAll('#m5 p');if(r5<ps.length){ps[r5].classList.remove('hidden');r5++}
+ const b=document.getElementById('b5');if(r5<ps.length)b.textContent='Montrer la phrase '+(r5+1);else{b.textContent='Le paragraphe est complet ✓';b.disabled=true;b.style.opacity=.6}}
+function show5(){const t=['p5a','p5b','p5c'].map(id=>document.getElementById(id).value.trim()).filter(Boolean).join(' ');const o=document.getElementById('o5');o.classList.remove('hidden');
+ o.innerHTML=t?'<p>'+underline(t)+'</p><p class="small" style="text-indent:0">Tu vois le petit espace au début ? C\'est le <b>retrait</b>. Trois phrases, une idée : c\'est un <b>paragraphe</b>.</p>':'<p class="small" style="text-indent:0">Écris au moins une phrase dans une des cases, puis clique à nouveau.</p>'}
+
+/* ---- Marche 6 ---- */
+const R=['r1','r2','r3'].map(id=>document.getElementById(id));
+const wb=document.getElementById('wb6');WORDS.forEach(w=>{const s=document.createElement('span');s.className='w';s.textContent=w[0];s.dataset.w=w[0];wb.appendChild(s)});
+try{R.forEach(t=>{const v=localStorage.getItem('hg15-'+t.id);if(v)t.value=v})}catch(e){}
+function upd6(){const all=R.map(t=>t.value).join(' '),w=found(all);
+ try{R.forEach(t=>localStorage.setItem('hg15-'+t.id,t.value))}catch(e){}
+ [...wb.children].forEach(s=>s.classList.toggle('yes',w.includes(s.dataset.w)));
+ document.getElementById('cnt6').textContent=w.length+(w.length>1?' mots':' mot')+' sur 9';
+ const lines=R.reduce((n,t)=>n+(t.value.trim()?Math.ceil(t.value.trim().length/60):0),0);
+ document.getElementById('lines6').textContent='≈ '+lines+(lines>1?' lignes':' ligne')+' à la main (au moins 8)';
+ const filled=R.filter(t=>t.value.trim()).length,cs=R.filter(t=>t.value.trim()).map(t=>sentenceChecks(t.value));
+ const maj=cs.length&&cs.every(c=>c.maj),pt=cs.length&&cs.every(c=>c.pt);
+ document.getElementById('c6').innerHTML=[['3 paragraphes ('+filled+'/3)',filled===3],['Majuscules',maj],['Points',pt],['Au moins 8 lignes',lines>=8],['Les 9 mots',w.length===9]].map(([l,ok])=>'<span class="ck '+(ok?'yes':'no')+'">'+esc(l)+'</span>').join('');
+ const f=document.getElementById('f6');
+ f.textContent=!all.trim()?'':w.length===9&&filled===3&&lines>=8?'Magnifique : ta rédaction est complète ! Relis-la une dernière fois.':filled===3?'Tes trois paragraphes sont là. Ajoute des mots du cours pour gagner encore des points.':w.length>=2?'Ça avance : tu as déjà des points. Continue paragraphe par paragraphe.':'Bon début ! Chaque phrase compte.'}
+R.forEach(t=>t.addEventListener('input',upd6));upd6();
+function txt6(){return R.map(t=>t.value.trim()).filter(Boolean)}
+function show6(){const o=document.getElementById('o6');const p=txt6();o.classList.remove('hidden');
+ o.innerHTML=p.length?p.map(x=>'<p>'+underline(x)+'</p>').join('')+'<p class="small" style="text-indent:0">Les mots du cours sont soulignés : sur ta feuille, souligne-les en couleur.</p>':'<p class="small" style="text-indent:0">Écris d\'abord dans une des trois cases.</p>'}
+function copy6(){const m=document.getElementById('cp6');navigator.clipboard.writeText(txt6().join('\n\n')).then(()=>m.textContent='Copié !').catch(()=>m.textContent='Copie impossible ici : sélectionne le texte à la main.')}
+
+q1Show();q2Show();q3Show();
+const h=parseInt((location.hash||'').replace('#m',''),10);go(isNaN(h)?0:h);
+</script>
+</body>
+</html>
