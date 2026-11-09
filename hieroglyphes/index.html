@@ -349,7 +349,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
  <div class="types">
   <div class="type son"><b>Signe-son</b><div class="h" data-gl="𓅓"></div>Il note un son, comme dans un rébus.<br>La chouette = le son /m/</div>
   <div class="type mot"><b>Signe-mot</b><div class="h" data-gl="𓉐"></div>Il montre la chose.<br>Le plan d'une maison = « maison »</div>
-  <div class="type det"><b>Déterminatif</b><div class="h" data-gl="𓀀"></div>Muet : il dit de quoi on parle.<br>Un homme = « c'est une personne »</div>
+  <div class="type det"><b>Dessin-indice</b><div class="h" data-gl="𓀀"></div>Muet : il dit de quoi on parle.<br>Un homme = « c'est une personne »</div>
  </div>
  <div class="go">
   <button data-go="reb"><span class="h">𓂋</span>1 · Rébus<small>commence ici</small></button>
@@ -382,13 +382,13 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <div class="etape"><div class="nb">2 consonnes</div><div class="h" data-gl="𓉐"></div><b>per</b><div>Le plan d'une <b>maison</b> : p-r.</div><div class="fl">Le verbe « <b>sortir</b> » a aussi les consonnes p-r : on l'écrit avec la maison… suivie de deux jambes <span class="h" data-gl="𓂻"></span> pour dire « c'est un mouvement ».</div></div>
   <div class="etape"><div class="nb">1 consonne</div><div class="h" data-gl="𓂋"></div><b>r</b><div>La <b>bouche</b> se disait à peu près « ra ».</div><div class="fl">Le signe ne note plus qu'une consonne : <b>r</b>. Les signes à une consonne sont ceux de nos ateliers.</div></div>
  </div>
- <div class="note bleu"><b>À retenir :</b> un hiéroglyphe peut noter un son, comme dans un rébus. Le scribe écrit les consonnes qu'il <b>entend</b>, pas les lettres de l'orthographe. À la fin, il ajoute un <b>déterminatif</b>, un dessin muet qui dit de quoi on parle.</div>
+ <div class="note bleu"><b>À retenir :</b> un hiéroglyphe peut noter un son, comme dans un rébus. Le scribe écrit les consonnes qu'il <b>entend</b>, pas les lettres de l'orthographe. À la fin, il ajoute un <b>dessin-indice</b> : il ne se lit pas, il dit de quoi on parle.</div>
 </section>
 
 <!-- DÉCHIFFRER -->
 <section id="dech">
  <h2 class="titre"><span class="num">2</span> · Déchiffre comme un scribe</h2>
- <p class="consigne">Lis les <b>sons</b> des consonnes, puis regarde le <b>déterminatif</b> (le dernier signe, dans le cadre rouge) : il dit de quoi on parle. Quel mot ajoute les bonnes voyelles ?</p>
+ <p class="consigne">Lis les <b>sons</b>, puis regarde le <b>dessin-indice</b> (le dernier signe, dans le cadre rouge) : il dit de quoi on parle. Quel est le mot ?<br>Les voyelles, en pâle, sont une aide moderne. Quand tu es prêt, relève le <b>défi sans voyelles</b>, comme un vrai scribe : 2 ⭐ par mot !</p>
  <div class="defi" id="defi">🔗 Un camarade t'envoie un message secret ! Déchiffre-le.</div>
  <div class="row chips" id="decList"></div>
  <div class="row">
@@ -396,7 +396,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <input type="password" class="mid" id="decIn" placeholder="Prof : tape un mot secret…" autocomplete="off">
   <button class="btn" id="decGo">Afficher</button>
   <span style="flex:1"></span>
-  <button class="btn" id="decVoy">Avec nos voyelles (aide)</button>
+  <button class="btn turq" id="decVoy">🏆 Défi : sans voyelles</button>
   <button class="btn" id="decNiv">Noms des objets</button>
   <button class="btn" id="decAide">📜 Tableau des signes</button>
  </div>
@@ -419,7 +419,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
 <!-- ASSEMBLER -->
 <section id="asm">
  <h2 class="titre"><span class="num">3</span> · Écris le mot en scribe</h2>
- <p class="consigne">Dis le mot à voix haute. Choisis les signes de ses <b>consonnes</b>, dans l'ordre, puis le bon <b>déterminatif</b>. Attention aux pièges !</p>
+ <p class="consigne">Dis le mot à voix haute. Choisis les signes de ses <b>consonnes</b>, dans l'ordre. Attention aux pièges ! Quand le mot est juste, le dessin-indice apparaît.</p>
  <div class="row chips" id="asmList"></div>
  <div class="row"><button class="btn gold" id="asmRnd">🎲 Mot au hasard</button></div>
  <div class="panel">
@@ -429,7 +429,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <div class="row center" style="margin-top:16px"><button class="btn big prim" id="asmCheck">✔ Vérifier</button><button class="btn big" id="asmUndo">↶ Retirer</button><button class="btn big" id="asmSol">Solution</button></div>
   <div class="verdict" id="asmVerdict"></div>
  </div>
- <div class="note">Un mot qui commence par une voyelle garde son premier signe : les Égyptiens écrivaient là une consonne faible (le vautour, le roseau, la caille).</div>
+ <div class="note">Un mot qui commence par une voyelle garde son premier signe : les Égyptiens écrivaient là une consonne faible (le vautour, le roseau, la caille). Le dessin-indice, que les savants appellent <b>déterminatif</b>, ne se lit pas.</div>
 </section>
 
 <!-- ÉCRIRE -->
@@ -477,7 +477,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
 <section id="vrai">
  <h2 class="titre"><span class="num">6</span> · De vrais mots égyptiens</h2>
  <div class="note">Ici, ce n'est plus du français : ce sont de vrais mots. Clique sur un mot, cherche <b>quel rôle joue chaque signe</b>, puis vérifie.
-  <div class="legend" style="margin-top:8px"><span><i style="background:var(--lapis)"></i>signe-son</span><span><i style="background:var(--vert)"></i>signe-mot</span><span><i style="background:var(--corn)"></i>déterminatif (muet)</span></div></div>
+  <div class="legend" style="margin-top:8px"><span><i style="background:var(--lapis)"></i>signe-son</span><span><i style="background:var(--vert)"></i>signe-mot</span><span><i style="background:var(--corn)"></i>dessin-indice (muet)</span></div></div>
  <div class="cards" id="cards"></div>
 </section>
 
@@ -623,7 +623,7 @@ function render(el,items,o){
   add(c);
  });
  if(o.det){const d=DET[o.det],c=document.createElement("div");c.className="cell det";c.style.minWidth=Math.round(gs*.72)+"px";
-  c.innerHTML='<div class="h">'+gl(d[0])+'</div><div class="lat dl">muet</div><div class="nom">'+d[1]+'</div>';add(c);}
+  c.innerHTML='<div class="h">'+gl(d[0])+'</div><div class="lat dl">indice</div><div class="nom">'+d[1]+'</div>';add(c);}
  el.innerHTML="";
  if(o.cart){const c=document.createElement("div");c.className="cartouche"+(o.dir==="col"?" v":"")+(o.dir==="rtl"?" r":"");c.appendChild(w);el.appendChild(c);}
  else el.appendChild(w);
@@ -665,7 +665,7 @@ $("rang").onclick=()=>{
  '<div style="text-align:center;font-size:26px;font-weight:700;margin:8px 0">'+p+' ⭐ — '+r[1]+'</div>'+
  '<div class="barre"><div style="width:'+pct+'%"></div></div>'+
  '<div style="text-align:center;margin:8px 0;color:var(--muted)">'+(nx?"Encore "+(nx[0]-p)+" ⭐ pour devenir "+nx[1]+".":"Tu as atteint le plus haut rang !")+'</div>'+
- '<div class="note">Rébus trouvés : <b>'+cpt("reb:")+'</b> · Mots déchiffrés : <b>'+cpt("dec:")+'</b> · Mots assemblés : <b>'+cpt("asm:")+'</b> · Découverte de Champollion : <b>'+(PROG.found["champ"]?"oui":"pas encore")+'</b></div>'+
+ '<div class="note">Rébus trouvés : <b>'+cpt("reb:")+'</b> · Mots déchiffrés : <b>'+cpt("dec:")+'</b> (dont sans voyelles : <b>'+cpt("decdefi:")+'</b>) · Mots assemblés : <b>'+cpt("asm:")+'</b> · Découverte de Champollion : <b>'+(PROG.found["champ"]?"oui":"pas encore")+'</b></div>'+
  '<div class="note" style="font-size:17px">Un mot déjà trouvé ne rapporte pas de nouveaux points. Si tu révèles la réponse, tu ne gagnes pas de point.</div>'+
  '<div class="row center"><button class="btn small" id="progRaz">Effacer ma progression</button></div>');
  $("progRaz").onclick=()=>{if(confirm("Effacer tous tes points ?")){PROG={found:{}};try{localStorage.removeItem("scribe.v1");}catch(e){}majRang();$("modal").classList.remove("on");}};
@@ -727,14 +727,15 @@ function chips(el,fn,pre){
  el.innerHTML="";
  MOTS.forEach(([g,ws])=>{
   const s=document.createElement("span");s.className="grp";s.textContent=g+" :";el.appendChild(s);
-  ws.forEach((m,i)=>{const b=document.createElement("button");b.className="btn"+(PROG.found[pre+simple(m[0])]?" found":"");b.dataset.w=m[0];b.textContent=g[0]+(i+1);b.title="mot mystère";b.onclick=()=>{el.querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");fn(m);};el.appendChild(b);});
+  ws.forEach((m,i)=>{const b=document.createElement("button");b.className="btn"+(trouve(pre,m[0])?" found":"");b.dataset.w=m[0];b.textContent=g[0]+(i+1);b.title="mot mystère";b.onclick=()=>{el.querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");fn(m);};el.appendChild(b);});
  });
 }
-function marque(el,pre){el.querySelectorAll(".btn[data-w]").forEach(b=>b.classList.toggle("found",!!PROG.found[pre+simple(b.dataset.w)]));}
+function trouve(pre,w){w=simple(w);return !!(PROG.found[pre+w]||(pre==="dec:"&&PROG.found["decdefi:"+w]));}
+function marque(el,pre){el.querySelectorAll(".btn[data-w]").forEach(b=>b.classList.toggle("found",trouve(pre,b.dataset.w)));}
 const hasard=()=>TOUS[Math.floor(Math.random()*TOUS.length)];
 
 // ===== 2. Déchiffrer =====
-let D=null,decN=0,decNom=0,decVu=0,decVoy=0;
+let D=null,decN=0,decNom=0,decVu=0,decVoy=1;
 function decDraw(anim){
  const w=render($("decOut"),filtre(D.items,decVoy),{lat:0,nom:decNom,anim:anim?0:false,det:D.det});
  [...w.querySelectorAll(".cell")].forEach((c,i)=>{if(i<decN)c.querySelector(".lat").style.visibility="visible";});
@@ -752,16 +753,16 @@ $("decHint").onclick=()=>{if(!D)return;const cells=$("decOut").querySelectorAll(
 function decMontre(){
  decN=99;decDraw();const a=$("decAns");a.textContent=D.w.toUpperCase();a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");
  const cons=filtre(D.items,0).filter(x=>!x.sp).map(x=>"/"+x.l+"/").join(" ");
- let t="Le scribe a écrit les sons <b>"+cons+"</b>"+(D.det?" et le déterminatif « "+DET[D.det][1]+" »":"")+". Toi, tu as ajouté les voyelles : <b>"+D.w+"</b>.";
- if(D.w==="momie")t+="<br>Avec les mêmes consonnes /m/ /m/, on pourrait lire « maman » ou « mamie » : c'est le déterminatif qui dit qu'il s'agit d'une momie.";
+ let t="Le scribe a écrit les sons <b>"+cons+"</b>"+(D.det?" et le dessin-indice « "+DET[D.det][1]+" »":"")+". Toi, tu as ajouté les voyelles : <b>"+D.w+"</b>.";
+ if(D.w==="momie")t+="<br>Avec les mêmes consonnes /m/ /m/, on pourrait lire « maman » ou « mamie » : c'est le dessin-indice qui dit qu'il s'agit d'une momie.";
  $("decExp").innerHTML=t;$("decExp").style.display="block";
 }
 $("decReveal").onclick=()=>{if(!D)return;decVu=1;decMontre();};
 $("decCheck").onclick=()=>{if(!D||!$("decRep").value.trim())return;const v=$("decV");
- if(simple($("decRep").value)===simple(D.w)){v.className="verdict ok-c";v.textContent="Bravo, scribe ! Tu as déchiffré le mot.";decMontre();if(!decVu)gagne("dec:"+simple(D.w),1);marque($("decList"),"dec:");}
+ if(simple($("decRep").value)===simple(D.w)){v.className="verdict ok-c";v.textContent=decVoy?"Bravo ! Essaie maintenant le défi sans voyelles.":"Bravo, vrai scribe ! Tu as lu sans voyelles.";decMontre();if(!decVu)gagne((decVoy?"dec:":"decdefi:")+simple(D.w),decVoy?1:2);marque($("decList"),"dec:");}
  else{v.className="verdict ko-c shake";v.textContent="Pas encore : dis les sons à voix haute et ajoute des voyelles.";setTimeout(()=>v.classList.remove("shake"),400);}};
 $("decRep").onkeydown=e=>{if(e.key==="Enter")$("decCheck").click();};
-$("decVoy").onclick=function(){decVoy=!decVoy;this.classList.toggle("on",decVoy);if(D)decDraw();};
+$("decVoy").onclick=function(){decVoy=!decVoy;this.classList.toggle("on",!decVoy);if(D)decDraw();};
 $("decNiv").onclick=function(){decNom=!decNom;this.classList.toggle("on",decNom);if(D)decDraw();};
 $("decAide").onclick=function(){const on=$("decMini").style.display==="none";$("decMini").style.display=on?"grid":"none";$("decWrap").classList.toggle("aide",on);this.classList.toggle("on",on);if(D)decDraw();};
 
@@ -775,23 +776,23 @@ let A=null,asmPick=[],asmTray=[],asmVu=0;
 const gA=p=>p.t==="d"?DET[p.k][0]:S[p.k][0];
 function asmSet(m){
  asmVu=0;
- const sol=filtre(sonsMot(m),0).map(x=>({t:"s",k:x.k,l:x.l})).concat([{t:"d",k:m[2]}]);
- A={w:m[0],sol};
+ const sol=filtre(sonsMot(m),0).map(x=>({t:"s",k:x.k,l:x.l}));
+ A={w:m[0],sol,det:m[2],fini:0};
  $("asmTarget").textContent=m[0].toUpperCase();
  const glyphs=new Set(sol.map(gA));
  const leurres=[],seen=new Set();
  for(const k of shuffle(Object.keys(S).filter(k=>!["e","o","v","l","hh","â","tch","w","q"].includes(k)))){const g=S[k][0];if(!glyphs.has(g)&&!seen.has(g)){seen.add(g);leurres.push({t:"s",k,l:LAB[k]||k});}if(leurres.length>=3)break;}
- const dets=shuffle(Object.keys(DET).filter(k=>k!==m[2])).slice(0,2).map(k=>({t:"d",k}));
- asmTray=shuffle(sol.concat(leurres,dets).map(p=>Object.assign({},p)));
+ asmTray=shuffle(sol.concat(leurres).map(p=>Object.assign({},p)));
  asmPick=[];$("asmVerdict").textContent="";asmDraw();
 }
 function asmDraw(fb){
  const sl=$("asmSlots");sl.innerHTML="";
  A.sol.forEach((s,i)=>{const d=document.createElement("div");const p=asmPick[i];
   d.className="slot"+(s.t==="d"?" sdet":"")+(p?"":" empty")+(fb&&p?(gA(p)===gA(s)?" ok":" ko"):"");
-  if(p){d.innerHTML='<span class="h">'+gl(gA(p))+'</span>';d.onclick=()=>{asmPick.splice(i,1);$("asmVerdict").textContent="";asmDraw();};}
-  else if(s.t==="d")d.innerHTML='<small>déterminatif</small>';
+  if(p){d.innerHTML='<span class="h">'+gl(gA(p))+'</span>';d.onclick=()=>{A.fini=0;asmPick.splice(i,1);$("asmVerdict").textContent="";asmDraw();};}
   sl.appendChild(d);});
+ const di=document.createElement("div");di.className="slot sdet"+(A.fini?" ok":" empty");
+ di.innerHTML=A.fini?'<span class="h">'+gl(DET[A.det][0])+'</span>':'<small>dessin-indice</small>';di.title=DET[A.det][1];sl.appendChild(di);
  const tr=$("asmTray");tr.innerHTML="";
  asmTray.forEach(p=>{const d=document.createElement("div");d.className="piece"+(p.t==="d"?" pdet":"")+(asmPick.includes(p)?" used":"");
   d.innerHTML='<span class="h">'+gl(gA(p))+'</span><small>'+(p.t==="d"?DET[p.k][1]:"/"+p.l+"/ "+S[p.k][1])+'</small>';
@@ -799,13 +800,13 @@ function asmDraw(fb){
 }
 chips($("asmList"),asmSet,"asm:");
 $("asmRnd").onclick=()=>{$("asmList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));asmSet(hasard());};
-$("asmUndo").onclick=()=>{if(!A)return;asmPick.pop();$("asmVerdict").textContent="";asmDraw();};
+$("asmUndo").onclick=()=>{if(!A)return;A.fini=0;asmPick.pop();$("asmVerdict").textContent="";asmDraw();};
 $("asmCheck").onclick=()=>{if(!A)return;asmDraw(1);
  const ok=asmPick.length===A.sol.length&&asmPick.every((p,i)=>gA(p)===gA(A.sol[i]));
  const v=$("asmVerdict");v.className="verdict "+(ok?"ok-c":"ko-c");
  v.textContent=ok?"Bravo, scribe ! Le mot est parfait.":(asmPick.length<A.sol.length?"Il manque des signes…":"Pas encore : les cases rouges sont à revoir.");
- if(ok&&!asmVu){gagne("asm:"+simple(A.w),1);marque($("asmList"),"asm:");}};
-$("asmSol").onclick=()=>{if(!A)return;asmVu=1;const used=new Set();asmPick=A.sol.map(s=>{const p=asmTray.find(q=>!used.has(q)&&gA(q)===gA(s));used.add(p);return p;});asmDraw(1);$("asmVerdict").textContent="";};
+ if(ok){A.fini=1;asmDraw(1);v.textContent="Bravo, scribe ! Le dessin-indice « "+DET[A.det][1]+" » complète le mot.";if(!asmVu){gagne("asm:"+simple(A.w),1);marque($("asmList"),"asm:");}}};
+$("asmSol").onclick=()=>{if(!A)return;asmVu=1;const used=new Set();asmPick=A.sol.map(s=>{const p=asmTray.find(q=>!used.has(q)&&gA(q)===gA(s));used.add(p);return p;});A.fini=1;asmDraw(1);$("asmVerdict").textContent="";};
 
 // ===== 4. Écrire =====
 const E={cart:0,voy:0,lat:1,nom:1,dir:"ltr"},ein=$("ecrIn");let eNb=0;
@@ -868,13 +869,13 @@ const V=[
  ["scribe","sech",[["𓏞","mot","la palette, le godet d'eau et le calame du scribe"],["𓀀","det","un homme assis : « c'est une personne »"]],""]
 ];
 $("cards").innerHTML=V.map((v,i)=>'<div class="card" data-i="'+i+'"><div class="h">'+gl(v[2].map(p=>p[0]).join(""))+'</div><div class="fr">'+v[0]+'</div><div class="tr">se lit : '+v[1]+'</div></div>').join("");
-const ROLE={son:"signe-son",mot:"signe-mot",det:"déterminatif (muet)"};
+const ROLE={son:"signe-son",mot:"signe-mot",det:"dessin-indice (muet)"};
 $("cards").querySelectorAll(".card").forEach(c=>c.onclick=()=>{const v=V[c.dataset.i];
  openModal('<div style="text-align:center"><div class="titre" style="font-size:48px">'+v[0]+'</div><div style="font-size:24px;color:var(--muted)">se lit : <i>'+v[1]+'</i></div></div>'+
  '<div id="dec" class="decomp">'+v[2].map(p=>'<div class="part '+p[1]+'"><div class="h">'+gl(p[0])+'</div><div class="role">'+ROLE[p[1]]+'</div><div class="why">'+p[2]+'</div></div>').join("")+'</div>'+
  '<div class="row center"><button class="btn big prim" id="showR">Montrer le rôle de chaque signe</button></div>'+
  (v[3]?'<div class="note">'+v[3]+'</div>':'')+
- '<div class="legend"><span><i style="background:var(--lapis)"></i>signe-son</span><span><i style="background:var(--vert)"></i>signe-mot</span><span><i style="background:var(--corn)"></i>déterminatif (muet)</span></div>');
+ '<div class="legend"><span><i style="background:var(--lapis)"></i>signe-son</span><span><i style="background:var(--vert)"></i>signe-mot</span><span><i style="background:var(--corn)"></i>dessin-indice (muet)</span></div>');
  $("showR").onclick=()=>{$("dec").classList.toggle("show-roles");};});
 
 // ===== Tableau des signes =====
