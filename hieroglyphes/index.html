@@ -191,6 +191,18 @@ input.mid{font-size:24px;width:min(340px,100%)}
 .compteur{font-size:24px;font-weight:700;text-align:center}
 .compris{display:none}.compris.on{display:block;animation:fade .3s}
 .compris ol{margin:6px 0;padding-left:28px;line-height:1.5}
+.pont{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:10px 0}
+.etape{background:var(--papyrus2);border:3px solid var(--line);border-radius:14px;padding:12px 14px;text-align:center;display:flex;flex-direction:column;gap:6px;font-size:19px}
+.etape>.h{font-size:96px;height:110px;display:flex;align-items:center;justify-content:center}
+.etape .nb{font-weight:700;color:#fff;background:var(--lapis);border-radius:999px;padding:3px 12px;align-self:center;font-size:17px}
+.etape>b{font-size:24px}.etape .fl{border-top:2px dashed var(--line);padding-top:8px;color:var(--ink)}
+.cell.aide .h{opacity:.45}.cell.aide .lat{color:var(--muted);font-weight:400}
+.cell.det{border:3px solid var(--corn);border-radius:12px;padding:4px 6px 2px;margin-left:8px;background:#fbe9e3}
+.cell.det .lat,.cell.det .nom{visibility:visible!important}.cell.det .dl{color:var(--corn);font-size:20px}
+.word.col .cell.det{margin-left:0;margin-top:8px}
+.slot.sdet{border-color:var(--corn);margin-left:14px}.slot small{font-size:13px;color:var(--corn);text-align:center}
+.piece.pdet{border-color:var(--corn);background:#fbe9e3}
+.mini div.aide{border-style:dashed;opacity:.75}
 /* tableau */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
 .tile{background:var(--papyrus2);border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center;cursor:pointer;transition:transform .1s}
@@ -260,6 +272,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
  .answer{font-size:38px;letter-spacing:3px;min-height:48px}
  .verdict{font-size:22px}
  .go{grid-template-columns:repeat(2,1fr)}
+ .pont{grid-template-columns:1fr}.etape>.h{font-size:70px;height:80px}
  .type .h{font-size:56px}
  .slot,.piece{width:74px;height:92px}.slot .h{font-size:56px}.piece .h{font-size:46px;height:62px}.piece small{font-size:11px}
  .target{font-size:40px}
@@ -332,18 +345,18 @@ input.mid{font-size:24px;width:min(340px,100%)}
   </div>
  </div>
  <div class="types">
-  <div class="type son"><b>Signe-son</b><div class="h" data-gl="𓅓"></div>Il note un son.<br>La chouette = « m »</div>
+  <div class="type son"><b>Signe-son</b><div class="h" data-gl="𓅓"></div>Il note un son, comme dans un rébus.<br>La chouette = le son /m/</div>
   <div class="type mot"><b>Signe-mot</b><div class="h" data-gl="𓉐"></div>Il montre la chose.<br>Le plan d'une maison = « maison »</div>
   <div class="type det"><b>Déterminatif</b><div class="h" data-gl="𓀀"></div>Muet : il dit de quoi on parle.<br>Un homme = « c'est une personne »</div>
  </div>
  <div class="go">
   <button data-go="reb"><span class="h">𓂋</span>1 · Rébus<small>commence ici</small></button>
   <button data-go="dech"><span class="h">𓁹</span>2 · Déchiffrer<small>trouve le mot caché</small></button>
-  <button data-go="asm"><span class="h">𓊃</span>3 · Assembler<small>attention aux pièges</small></button>
+  <button data-go="asm"><span class="h">𓊃</span>3 · Assembler<small>écris en scribe</small></button>
   <button data-go="ecr"><span class="h">𓏞</span>4 · Écrire<small>ton nom, un message secret</small></button>
   <button data-go="champ"><span class="h">𓍷</span>5 · Champollion<small>refais sa découverte</small></button>
   <button data-go="vrai"><span class="h">𓋹</span>6 · Vrais mots<small>de l'égyptien ancien</small></button>
-  <button data-go="tab"><span class="h">𓅓</span>Les signes<small>l'alphabet du scribe</small></button>
+  <button data-go="tab"><span class="h">𓅓</span>Les signes<small>les signes-sons du scribe</small></button>
   <button data-go="maison"><span class="h">𓉐</span>Chez toi<small>l'adresse et le QR code</small></button>
  </div>
 </section>
@@ -359,13 +372,20 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <div class="row center"><button class="btn" id="rebNoms">💡 Nommer les images</button><button class="btn" id="rebSol">Réponse</button><button class="btn gold" id="rebNext">Rébus suivant ➜</button></div>
   <div class="verdict" id="rebV"></div>
  </div>
- <div class="note bleu"><b>Les Égyptiens faisaient pareil !</b> La bouche se disait à peu près « r » : alors le dessin de la bouche <span class="h" data-gl="𓂋"></span> sert aussi à écrire le <b>son r</b>, même quand on ne parle pas de bouche. C'est un <b>signe-son</b>.</div>
+ <h2 class="titre" style="font-size:32px;margin-top:22px">Et les Égyptiens ? Du rébus aux signes-sons</h2>
+ <p class="consigne">Les Égyptiens faisaient des rébus eux aussi, avec une différence : ils ne gardaient que les <b>consonnes</b> des mots. Les voyelles n'étaient pas écrites.</p>
+ <div class="pont">
+  <div class="etape"><div class="nb">3 consonnes</div><div class="h" data-gl="𓋹"></div><b>ânkh</b><div>Ce signe représente sans doute une <b>lanière de sandale</b> : ꜥ-n-ḫ.</div><div class="fl">Les mots « <b>vie</b> » et « <b>miroir</b> » ont les mêmes consonnes ꜥ-n-ḫ : on les écrit avec ce signe. C'est un rébus !</div></div>
+  <div class="etape"><div class="nb">2 consonnes</div><div class="h" data-gl="𓉐"></div><b>per</b><div>Le plan d'une <b>maison</b> : p-r.</div><div class="fl">Le verbe « <b>sortir</b> » a aussi les consonnes p-r : on l'écrit avec la maison… suivie de deux jambes <span class="h" data-gl="𓂻"></span> pour dire « c'est un mouvement ».</div></div>
+  <div class="etape"><div class="nb">1 consonne</div><div class="h" data-gl="𓂋"></div><b>r</b><div>La <b>bouche</b> se disait à peu près « ra ».</div><div class="fl">Le signe ne note plus qu'une consonne : <b>r</b>. Les signes à une consonne sont ceux de nos ateliers.</div></div>
+ </div>
+ <div class="note bleu"><b>À retenir :</b> un hiéroglyphe peut noter un son, comme dans un rébus. Le scribe écrit les consonnes qu'il <b>entend</b>, pas les lettres de l'orthographe. À la fin, il ajoute un <b>déterminatif</b>, un dessin muet qui dit de quoi on parle.</div>
 </section>
 
 <!-- DÉCHIFFRER -->
 <section id="dech">
- <h2 class="titre"><span class="num">2</span> · Déchiffre comme Champollion</h2>
- <p class="consigne">Quel mot se cache derrière ces signes ? Aide-toi du tableau des signes.</p>
+ <h2 class="titre"><span class="num">2</span> · Déchiffre comme un scribe</h2>
+ <p class="consigne">Lis les <b>sons</b> des consonnes, puis regarde le <b>déterminatif</b> (le dernier signe, dans le cadre rouge) : il dit de quoi on parle. Quel mot ajoute les bonnes voyelles ?</p>
  <div class="defi" id="defi">🔗 Un camarade t'envoie un message secret ! Déchiffre-le.</div>
  <div class="row chips" id="decList"></div>
  <div class="row">
@@ -373,7 +393,8 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <input type="password" class="mid" id="decIn" placeholder="Prof : tape un mot secret…" autocomplete="off">
   <button class="btn" id="decGo">Afficher</button>
   <span style="flex:1"></span>
-  <button class="btn" id="decNiv">Aide : noms des objets</button>
+  <button class="btn" id="decVoy">Avec nos voyelles (aide)</button>
+  <button class="btn" id="decNiv">Noms des objets</button>
   <button class="btn" id="decAide">📜 Tableau des signes</button>
  </div>
  <div class="dec-wrap" id="decWrap">
@@ -381,11 +402,12 @@ input.mid{font-size:24px;width:min(340px,100%)}
    <div class="stage"><div id="decOut" style="color:var(--muted);font-size:26px">Choisis un mot pour commencer.</div></div>
    <div class="row center"><input type="text" class="mid" id="decRep" placeholder="Ta réponse…" autocomplete="off"><button class="btn big prim" id="decCheck">✔ Vérifier</button></div>
    <div class="row center">
-    <button class="btn" id="decHint">💡 Indice (une lettre)</button>
+    <button class="btn" id="decHint">💡 Indice (un son)</button>
     <button class="btn" id="decReveal">Révéler la réponse</button>
    </div>
    <div class="verdict" id="decV"></div>
    <div class="answer" id="decAns"></div>
+   <div class="note" id="decExp" style="display:none"></div>
   </div>
   <div class="panel mini" id="decMini" style="display:none"></div>
  </div>
@@ -393,10 +415,10 @@ input.mid{font-size:24px;width:min(340px,100%)}
 
 <!-- ASSEMBLER -->
 <section id="asm">
- <h2 class="titre"><span class="num">3</span> · Assemble le mot</h2>
- <p class="consigne">Choisis les bons signes, dans le bon ordre. Attention : des signes pièges se sont glissés !</p>
+ <h2 class="titre"><span class="num">3</span> · Écris le mot en scribe</h2>
+ <p class="consigne">Dis le mot à voix haute. Choisis les signes de ses <b>consonnes</b>, dans l'ordre, puis le bon <b>déterminatif</b>. Attention aux pièges !</p>
  <div class="row chips" id="asmList"></div>
- <div class="row"><button class="btn gold" id="asmRnd">🎲 Mot au hasard</button><input type="text" class="mid" id="asmIn" placeholder="ou ton propre mot…"><button class="btn" id="asmGo">Lancer</button></div>
+ <div class="row"><button class="btn gold" id="asmRnd">🎲 Mot au hasard</button></div>
  <div class="panel">
   <div class="target" id="asmTarget">—</div>
   <div class="slots" id="asmSlots"></div>
@@ -404,16 +426,17 @@ input.mid{font-size:24px;width:min(340px,100%)}
   <div class="row center" style="margin-top:16px"><button class="btn big prim" id="asmCheck">✔ Vérifier</button><button class="btn big" id="asmUndo">↶ Retirer</button><button class="btn big" id="asmSol">Solution</button></div>
   <div class="verdict" id="asmVerdict"></div>
  </div>
+ <div class="note">Un mot qui commence par une voyelle garde son premier signe : les Égyptiens écrivaient là une consonne faible (le vautour, le roseau, la caille).</div>
 </section>
 
 <!-- ÉCRIRE -->
 <section id="ecr">
- <h2 class="titre"><span class="num">4</span> · Écris ton nom comme un pharaon</h2>
+ <h2 class="titre"><span class="num">4</span> · Écris ton nom comme un scribe</h2>
  <div class="row"><input type="text" id="ecrIn" placeholder="Tape un prénom ou un mot" autocomplete="off" maxlength="40"><button class="btn" id="oHideIn">🙈 Cacher</button></div>
  <div class="row">
+  <button class="btn" id="oVoy">Avec nos voyelles (aide)</button>
   <button class="btn" id="oCart">Cartouche</button>
-  <button class="btn" id="oVoy">Sans voyelles</button>
-  <button class="btn" id="oLeg">Masquer les lettres</button>
+  <button class="btn" id="oLeg">Masquer les sons</button>
   <span style="color:var(--muted);margin-left:8px">Sens :</span>
   <button class="btn on" data-dir="ltr">→</button><button class="btn" data-dir="rtl">←</button><button class="btn" data-dir="col">↓</button>
   <button class="btn" id="oKbd">⌨ Clavier de signes</button>
@@ -421,7 +444,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
  </div>
  <div class="panel"><div class="stage"><div id="ecrOut" style="color:var(--muted);font-size:26px">Les signes apparaîtront ici.</div></div></div>
  <div class="kbd" id="kbd" style="display:none"></div>
- <div class="note">Tape le mot <b>comme il se prononce</b> (« Thomas » → toma, « Lucía » → lucia). On écrit des <b>sons</b> avec des signes égyptiens : c'est une transcription, pas une traduction. Les Égyptiens, eux, n'écrivaient pas les voyelles : essaie « Sans voyelles » !</div>
+ <div class="note">Le scribe écrit ce qu'il <b>entend</b> : l'appli enlève le « e » muet de la fin, et « au », « eau », « ch », « qu »… deviennent un seul son. Pour le reste, tape le mot <b>comme il se prononce</b> : « Thomas » → <b>toma</b>, « Hugo » → <b>ugo</b>. Comme les Égyptiens, on n'écrit que les <b>consonnes</b> ; « Avec nos voyelles » ajoute une aide moderne, en pointillés.</div>
  <div class="note turq"><b>Message secret :</b> écris un mot, appuie sur « Message secret » et envoie le lien à un camarade. Il verra seulement les hiéroglyphes et devra les déchiffrer.</div>
 </section>
 
@@ -438,7 +461,7 @@ input.mid{font-size:24px;width:min(340px,100%)}
  <div class="note rouge compris" id="chCompris">
   <b>Ce que Champollion a compris</b>
   <ol>
-   <li>Ces signes notent des <b>sons</b> : p, t, o, l… Ce sont des signes-sons.</li>
+   <li>Ces signes notent des <b>sons</b> : /p/, /t/, /o/, /l/… Ce sont des signes-sons. Pour ces noms grecs, les scribes notaient même certaines voyelles.</li>
    <li>Un même son peut s'écrire avec <b>deux signes différents</b> : le « t » est un pain <span class="h" data-gl="𓏏"></span> dans Ptolémée, une main <span class="h" data-gl="𓂧"></span> dans Cléopâtre.</li>
    <li>Les deux derniers signes de Cléopâtre (le pain <span class="h" data-gl="𓏏"></span> et l'œuf <span class="h" data-gl="𓆇"></span>) se retrouvent après les noms de reines et de déesses : ils indiquent <b>une femme</b>.</li>
    <li>Ensuite, il voit un cartouche avec un soleil <span class="h" data-gl="𓇳"></span>, « Râ ». Il lit <b>Ramsès</b>. Le soleil n'est pas une lettre : c'est un <b>signe-mot</b>. L'écriture mélange donc les deux sortes de signes.</li>
@@ -457,8 +480,8 @@ input.mid{font-size:24px;width:min(340px,100%)}
 
 <!-- TABLEAU -->
 <section id="tab">
- <h2 class="titre">L'alphabet du scribe</h2>
- <div class="note">Chaque signe note <b>un son</b>. Clique sur un signe pour l'agrandir. Les cases en <b>pointillés</b> sont des conventions modernes : ces sons n'existaient pas en égyptien.</div>
+ <h2 class="titre">Les signes-sons du scribe</h2>
+ <div class="note">Ce n'est pas un alphabet : chaque signe note <b>une consonne</b>, un son que l'on entend. Clique sur un signe pour l'agrandir.<br>Cases <b>pointillées</b> : aides modernes. Les Égyptiens n'écrivaient pas les voyelles ; le vautour, le roseau et la caille étaient des consonnes faibles, que nous lisons a, i, ou. D'autres signes (l, v…) notent des sons qui n'existaient pas en égyptien.</div>
  <div class="grid" id="grid"></div>
 </section>
 
@@ -488,7 +511,8 @@ const PAINT={"𓄿":"ocre","𓅓":"brun","𓅱":"ocre","𓃀":"corn","𓂧":"cor
 function gl(s){return Array.from(s).map(c=>'<span class="'+(PAINT[c]?"p-"+PAINT[c]:"")+'">'+c+'</span>').join("");}
 document.querySelectorAll("[data-gl]").forEach(e=>e.innerHTML=gl(e.dataset.gl));
 
-// ===== Signes unilitères (liste de Gardiner) + conventions pour le français =====
+// ===== Signes à une consonne (liste de Gardiner) + conventions pour le français =====
+// [signe, objet, convention moderne (1) ou non (0)]
 const S={
  a:["𓄿","vautour",0], b:["𓃀","jambe",0], k:["𓎡","corbeille",0], d:["𓂧","main",0],
  e:["𓇋","roseau",1], f:["𓆑","vipère à cornes",0], g:["𓎼","support de jarre",0],
@@ -499,51 +523,104 @@ const S={
  w:["𓅱","petite caille",0], z:["𓊃","verrou",0], ch:["𓈙","bassin",0], kh:["𓐍","placenta",0],
  tch:["𓍿","entrave",0], "â":["𓂝","bras",0], hh:["𓎛","mèche tressée",0]
 };
-const VOY=new Set(["a","e","i","o","u","y"]);
+const VOY=new Set(["a","e","i","o","u"]);
+// Déterminatifs (signes muets)
+const DET={
+ eau:["𓈗","eau, fleuve"], momie:["𓀾","momie"], homme:["𓀀","homme, personne"], femme:["𓁐","femme, déesse"],
+ dieu:["𓀭","dieu, roi"], ecrit:["𓏛","écrit, papyrus"], pyramide:["𓉴","pyramide"], batiment:["𓉐","bâtiment"],
+ etranger:["𓈉","pays étranger, désert"], ville:["𓊖","ville"], montagne:["𓈋","montagne"]
+};
+// Mots mystères : sons du mot (pas son orthographe) + déterminatif. « ou » = u, « u » français = ü
+const MOTS=[
+ ["Égypte",[["Nil","n i l","eau"],["momie","m o m i","momie"],["pharaon","f a r a o","dieu"],["Isis","i z i s","femme"],["Osiris","o z i r i s","dieu"],["papyrus","p a p i r ü s","ecrit"],["scribe","s k r i b","homme"],["pyramide","p i r a m i d","pyramide"],["temple","t a p l","batiment"],["désert","d e z e r","etranger"]]],
+ ["Mésopotamie",[["Ur","u r","ville"],["Uruk","u r u k","ville"],["Euphrate","e f r a t","eau"],["roi","r w a","homme"],["tablette","t a b l e t","ecrit"]]],
+ ["Chez nous",[["Saragosse","s a r a g o s","ville"],["Èbre","e b r","eau"],["Aragon","a r a g o","etranger"],["Pilar","p i l a r","batiment"],["Moncayo","m o k a y o","montagne"]]]
+];
+const LAB={u:"ou",ü:"u",hh:"ḥ"};
+function sonsMot(m){return m[1].split(" ").map(x=>x==="ü"?{k:"u",l:"u",v:1}:{k:x,l:LAB[x]||x,v:VOY.has(x)});}
+const TOUS=MOTS.flatMap(g=>g[1]);
+
+// Transcription par les sons (approchée) d'un texte tapé
 // â (bras) et h fort (mèche) : saisis par le clavier de signes sous les formes ʿ et ḥ
-function norm(t){return t.replace(/ʿ/g,"\u0001").replace(/[ḥḤ]/g,"\u0002").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-function parse(txt){
- const t=norm(txt),out=[];let i=0;
- while(i<t.length){
-  const c=t[i],n=t[i+1]||"",nn=t[i+2]||"";
-  if(/\s/.test(c)){out.push({sp:1});i++;continue;}
-  if(c==="\u0001"){out.push({k:"â",l:"â"});i++;continue;}
-  if(c==="\u0002"){out.push({k:"hh",l:"ḥ"});i++;continue;}
-  if(c==="t"&&n==="c"&&nn==="h"){out.push({k:"tch",l:"tch"});i+=3;continue;}
-  if(c==="c"&&n==="h"){out.push({k:"ch",l:"ch"});i+=2;continue;}
-  if(c==="s"&&n==="h"){out.push({k:"ch",l:"sh"});i+=2;continue;}
-  if(c==="k"&&n==="h"){out.push({k:"kh",l:"kh"});i+=2;continue;}
-  if(c==="p"&&n==="h"){out.push({k:"f",l:"ph"});i+=2;continue;}
-  if(c==="o"&&n==="u"){out.push({k:"u",l:"ou",v:1});i+=2;continue;}
-  if(c==="q"&&n==="u"){out.push({k:"q",l:"qu"});i+=2;continue;}
-  if(c==="c"){out.push({k:"eiy".includes(n)?"s":"k",l:"c"});i++;continue;}
-  if(c==="x"){out.push({k:"k",l:"x"});out.push({k:"s",l:""});i++;continue;}
-  if(c===n&&!"aeiou".includes(c)){i++;continue;}
-  if(S[c]){out.push({k:c,l:c,v:VOY.has(c)});i++;continue;}
-  if(/[a-z0-9]/.test(c))out.push({unk:c});
+function prep(t){return t.replace(/ʰ/g,"\u0005").replace(/ʸ/g,"\u0006").replace(/ʠ/g,"\u0007").replace(/ʿ/g,"\u0001").replace(/[ḥḤ]/g,"\u0002").replace(/[çÇ]/g,"s").toLowerCase()
+ .replace(/[éèêë]/g,"\u0003").normalize("NFD").replace(/[̀-ͯ]/g,"");}
+function parseMot(w){
+ // w : un mot préparé. e muet final, consonne doublée, digrammes, nasales
+ if(w.length>2&&/[^e\u0003]e$/.test(w))w=w.slice(0,-1);
+ else if(w.length>3&&/[^aeiou\u0003]es$/.test(w))w=w.slice(0,-2);
+ const out=[],V="aeiouy\u0003",cons=c=>c&&!V.includes(c);
+ let i=0;
+ const push=(k,l,v)=>out.push({k,l:l||LAB[k]||k,v:!!v});
+ while(i<w.length){
+  const c=w[i],n=w[i+1]||"",nn=w[i+2]||"",r3=w.slice(i,i+3),r2=w.slice(i,i+2);
+  if(c==="\u0001"){push("â","â");i++;continue;}
+  if(c==="\u0002"){push("hh","ḥ");i++;continue;}
+  if(c==="\u0003"){push("e","é",1);i++;continue;}
+  if(c==="\u0005"){push("h");i++;continue;}
+  if(c==="\u0006"){push("y");i++;continue;}
+  if(c==="\u0007"){push("q");i++;continue;}
+  // nasales : an, en, on, in, ain… devant une consonne ou à la fin
+  const nas=w.slice(i).match(/^(ain|ein|aim|an|am|en|em|on|om|in|im|un|um)(?=$|[^aeiouy\u0003nm])/);
+  if(nas){const g=nas[1];push(g[0]==="o"?"o":g[0]==="a"&&g[1]!=="i"?"a":g[0]==="e"&&g[1]!=="i"?"a":"e",g,1);i+=g.length;continue;}
+  if(r3==="eau"){push("o","o",1);i+=3;continue;}
+  if(r3==="tch"){push("tch");i+=3;continue;}
+  if(r3==="ill"&&i>0){push("i","i",1);push("y","y");i+=3;continue;}
+  if(r2==="au"){push("o","o",1);i+=2;continue;}
+  if(r2==="ou"){push("u","ou",1);i+=2;continue;}
+  if(r2==="oi"){push("w");push("a","a",1);i+=2;continue;}
+  if(r2==="ai"||r2==="ei"||r2==="eu"){push("e","é",1);i+=2;continue;}
+  if(r2==="ch"||r2==="sh"){push("ch");i+=2;continue;}
+  if(r2==="kh"){push("kh");i+=2;continue;}
+  if(r2==="ph"){push("f");i+=2;continue;}
+  if(r2==="qu"){push("k");i+=2;continue;}
+  if(r2==="gu"&&"ei".includes(nn)){push("g");i+=2;continue;}
+  if(r2==="gn"){push("n");push("y");i+=2;continue;}
+  if(c===n&&cons(c)){i++;continue;}
+  if(r2==="th"){push("t");i+=2;continue;}
+  if(c==="h"){if(i>0)push("h");i++;continue;}
+  if(c==="c"){push("eiy\u0003".includes(n)?"s":"k");i++;continue;}
+  if(c==="g"){push("eiy\u0003".includes(n)?"j":"g");i++;continue;}
+  if(c==="q"){push("k");i++;continue;}
+  if(c==="x"){push("k");push("s");i++;continue;}
+  if(c==="s"&&i>0&&V.includes(w[i-1])&&n&&V.includes(n)){push("z");i++;continue;}
+  if(c==="y"){if(n&&V.includes(n))push("y");else push("i","i",1);i++;continue;}
+  if(c==="u"){push("u","u",1);i++;continue;}
+  if(VOY.has(c)){push(c,c,1);i++;continue;}
+  if(S[c]){push(c);i++;continue;}
+  if(/[0-9]/.test(c))out.push({unk:c});
   i++;
  }
  return out;
 }
-function render(el,txt,o){
- o=Object.assign({cart:0,novow:0,lat:1,nom:1,dir:"ltr",anim:0},o||{});
- let items=parse(txt);
- if(o.novow)items=items.filter((x,j)=>!x.v||j===0);
- const nb=items.filter(x=>!x.sp).length;
+function parse(txt){
+ const out=[];prep(txt).split(/[\s\-'’]+/).filter(Boolean).forEach((w,j)=>{if(j)out.push({sp:1});out.push(...parseMot(w.replace(/[^a-z0-9\u0001-\u0007]/g,"")));});
+ return out;
+}
+// Sons affichés : consonnes ; voyelles seulement en aide (sauf la première du mot, notée par une consonne faible)
+function filtre(items,voy){
+ let debut=true;
+ return items.map(x=>{if(x.sp){debut=true;return x;}const d=debut;debut=false;
+  if(x.v&&!d)return voy?Object.assign({},x,{aide:1}):null;return x;}).filter(Boolean);
+}
+function render(el,items,o){
+ o=Object.assign({cart:0,lat:1,nom:1,dir:"ltr",anim:0,det:null},o||{});
+ const nb=items.filter(x=>!x.sp).length+(o.det?1:0);
  const gs=o.dir==="col"?75:(nb<=6?130:nb<=9?105:nb<=13?80:62);
  el.style.setProperty("--gs",gs+"px");el.style.color="";el.style.fontSize="";
  const w=document.createElement("div");w.className="word "+(o.dir==="ltr"?"":o.dir);
  if(!o.lat)w.classList.add("hide-lat");if(!o.nom)w.classList.add("hide-nom");
  if(o.dir!=="col")w.style.flexWrap="nowrap";
  let idx=0;
+ const add=c=>{if(o.anim!==false&&idx>=o.anim){c.classList.add("grave");c.style.animationDelay=((idx-o.anim)*110)+"ms";}idx++;w.appendChild(c);};
  items.forEach(x=>{
   if(x.sp){if(o.dir!=="col"){const s=document.createElement("div");s.className="space";w.appendChild(s);}return;}
-  const c=document.createElement("div");c.className="cell";c.style.minWidth=Math.round(gs*.72)+"px";
+  const c=document.createElement("div");c.className="cell"+(x.aide?" aide":"");c.style.minWidth=Math.round(gs*.72)+"px";
   if(x.unk)c.innerHTML='<div class="unk">?</div><div class="lat">'+x.unk+'</div><div class="nom"></div>';
-  else{const s=S[x.k];c.innerHTML='<div class="h">'+gl(s[0])+'</div><div class="lat">'+x.l+'</div><div class="nom">'+s[1]+'</div>';}
-  if(o.anim!==false&&idx>=o.anim){c.classList.add("grave");c.style.animationDelay=((idx-o.anim)*110)+"ms";}
-  idx++;w.appendChild(c);
+  else{const s=S[x.k];c.innerHTML='<div class="h">'+gl(s[0])+'</div><div class="lat">/'+x.l+'/</div><div class="nom">'+s[1]+'</div>';}
+  add(c);
  });
+ if(o.det){const d=DET[o.det],c=document.createElement("div");c.className="cell det";c.style.minWidth=Math.round(gs*.72)+"px";
+  c.innerHTML='<div class="h">'+gl(d[0])+'</div><div class="lat dl">muet</div><div class="nom">'+d[1]+'</div>';add(c);}
  el.innerHTML="";
  if(o.cart){const c=document.createElement("div");c.className="cartouche"+(o.dir==="col"?" v":"")+(o.dir==="rtl"?" r":"");c.appendChild(w);el.appendChild(c);}
  else el.appendChild(w);
@@ -554,7 +631,7 @@ function render(el,txt,o){
 }
 const $=id=>document.getElementById(id);
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
-const simple=t=>norm(t).replace(/[^a-z0-9]/g,"");
+const simple=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
 
 // ===== Toast =====
 let tT;function toast(m){const t=$("toast");t.innerHTML=m;t.classList.add("on");clearTimeout(tT);tT=setTimeout(()=>t.classList.remove("on"),2600);}
@@ -643,96 +720,105 @@ $("rebIn").onkeydown=e=>{if(e.key==="Enter")$("rebOk").click();};
 rebDraw();
 
 // ===== Listes de mots =====
-const GROUPES=[
- ["Égypte",["Nil","Pharaon","Momie","Sphinx","Papyrus","Scribe","Pyramide","Temple","Isis","Osiris"]],
- ["Mésopotamie",["Ur","Uruk","Tablette","Argile","Roi"]],
- ["Chez nous",["Saragosse","Ebre","Aragon","Pilar","Moncayo"]]
-];
-const TOUS=GROUPES.flatMap(g=>g[1]);
 function chips(el,fn,pre){
  el.innerHTML="";
- GROUPES.forEach(([g,ws])=>{
+ MOTS.forEach(([g,ws])=>{
   const s=document.createElement("span");s.className="grp";s.textContent=g+" :";el.appendChild(s);
-  ws.forEach((w,i)=>{const b=document.createElement("button");b.className="btn"+(PROG.found[pre+simple(w)]?" found":"");b.dataset.w=w;b.textContent=g[0]+(i+1);b.title="mot mystère";b.onclick=()=>{el.querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");fn(w);};el.appendChild(b);});
+  ws.forEach((m,i)=>{const b=document.createElement("button");b.className="btn"+(PROG.found[pre+simple(m[0])]?" found":"");b.dataset.w=m[0];b.textContent=g[0]+(i+1);b.title="mot mystère";b.onclick=()=>{el.querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");fn(m);};el.appendChild(b);});
  });
 }
 function marque(el,pre){el.querySelectorAll(".btn[data-w]").forEach(b=>b.classList.toggle("found",!!PROG.found[pre+simple(b.dataset.w)]));}
+const hasard=()=>TOUS[Math.floor(Math.random()*TOUS.length)];
 
 // ===== 2. Déchiffrer =====
-let decW="",decN=0,decNom=0,decVu=0;
+let D=null,decN=0,decNom=0,decVu=0,decVoy=0;
 function decDraw(anim){
- const w=render($("decOut"),decW,{lat:0,nom:decNom,anim:anim?0:false});
- const cells=[...w.querySelectorAll(".cell")];
- cells.forEach((c,i)=>{if(i<decN)c.querySelector(".lat").style.visibility="visible";});
+ const w=render($("decOut"),filtre(D.items,decVoy),{lat:0,nom:decNom,anim:anim?0:false,det:D.det});
+ [...w.querySelectorAll(".cell")].forEach((c,i)=>{if(i<decN)c.querySelector(".lat").style.visibility="visible";});
 }
-function decSet(m,defi){decW=m;decN=0;decVu=0;$("decAns").textContent="";$("decV").textContent="";$("decRep").value="";$("defi").classList.toggle("on",!!defi);decDraw(1);}
-chips($("decList"),w=>decSet(w),"dec:");
-$("decRnd").onclick=()=>{$("decList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));decSet(TOUS[Math.floor(Math.random()*TOUS.length)]);};
+function decSet(m,defi){
+ // m : un mot de la liste [mot, sons, déterminatif] ou un texte libre
+ D=Array.isArray(m)?{w:m[0],items:sonsMot(m),det:m[2]}:{w:m,items:parse(m),det:null};
+ decN=0;decVu=0;["decAns","decV"].forEach(i=>$(i).textContent="");$("decExp").style.display="none";$("decRep").value="";$("defi").classList.toggle("on",!!defi);decDraw(1);
+}
+chips($("decList"),m=>decSet(m),"dec:");
+$("decRnd").onclick=()=>{$("decList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));decSet(hasard());};
 $("decGo").onclick=()=>{const v=$("decIn").value.trim();if(v){$("decList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));decSet(v);$("decIn").value="";}};
 $("decIn").onkeydown=e=>{if(e.key==="Enter")$("decGo").click();};
-$("decHint").onclick=()=>{if(!decW)return;const cells=$("decOut").querySelectorAll(".cell");if(decN<cells.length){const l=cells[decN].querySelector(".lat");l.style.visibility="visible";l.classList.add("pop");decN++;}};
-function decMontre(){decN=99;decDraw();const a=$("decAns");a.textContent=decW.toUpperCase();a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");}
-$("decReveal").onclick=()=>{if(!decW)return;decVu=1;decMontre();};
-$("decCheck").onclick=()=>{if(!decW||!$("decRep").value.trim())return;const v=$("decV");
- if(simple($("decRep").value)===simple(decW)){v.className="verdict ok-c";v.textContent="Bravo, scribe ! Tu as déchiffré le mot.";decMontre();if(!decVu)gagne("dec:"+simple(decW),1);marque($("decList"),"dec:");}
- else{v.className="verdict ko-c shake";v.textContent="Pas encore : vérifie signe par signe.";setTimeout(()=>v.classList.remove("shake"),400);}};
+$("decHint").onclick=()=>{if(!D)return;const cells=$("decOut").querySelectorAll(".cell:not(.det)");if(decN<cells.length){const l=cells[decN].querySelector(".lat");l.style.visibility="visible";l.classList.add("pop");decN++;}};
+function decMontre(){
+ decN=99;decDraw();const a=$("decAns");a.textContent=D.w.toUpperCase();a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");
+ const cons=filtre(D.items,0).filter(x=>!x.sp).map(x=>"/"+x.l+"/").join(" ");
+ let t="Le scribe a écrit les sons <b>"+cons+"</b>"+(D.det?" et le déterminatif « "+DET[D.det][1]+" »":"")+". Toi, tu as ajouté les voyelles : <b>"+D.w+"</b>.";
+ if(D.w==="momie")t+="<br>Avec les mêmes consonnes /m/ /m/, on pourrait lire « maman » ou « mamie » : c'est le déterminatif qui dit qu'il s'agit d'une momie.";
+ $("decExp").innerHTML=t;$("decExp").style.display="block";
+}
+$("decReveal").onclick=()=>{if(!D)return;decVu=1;decMontre();};
+$("decCheck").onclick=()=>{if(!D||!$("decRep").value.trim())return;const v=$("decV");
+ if(simple($("decRep").value)===simple(D.w)){v.className="verdict ok-c";v.textContent="Bravo, scribe ! Tu as déchiffré le mot.";decMontre();if(!decVu)gagne("dec:"+simple(D.w),1);marque($("decList"),"dec:");}
+ else{v.className="verdict ko-c shake";v.textContent="Pas encore : dis les sons à voix haute et ajoute des voyelles.";setTimeout(()=>v.classList.remove("shake"),400);}};
 $("decRep").onkeydown=e=>{if(e.key==="Enter")$("decCheck").click();};
-$("decNiv").onclick=function(){decNom=!decNom;this.classList.toggle("on",decNom);if(decW)decDraw();};
-$("decAide").onclick=function(){const on=$("decMini").style.display==="none";$("decMini").style.display=on?"grid":"none";$("decWrap").classList.toggle("aide",on);this.classList.toggle("on",on);if(decW)decDraw();};
+$("decVoy").onclick=function(){decVoy=!decVoy;this.classList.toggle("on",decVoy);if(D)decDraw();};
+$("decNiv").onclick=function(){decNom=!decNom;this.classList.toggle("on",decNom);if(D)decDraw();};
+$("decAide").onclick=function(){const on=$("decMini").style.display==="none";$("decMini").style.display=on?"grid":"none";$("decWrap").classList.toggle("aide",on);this.classList.toggle("on",on);if(D)decDraw();};
 
 // ===== Ordre du tableau =====
-const ORD=[["a","a"],["b","b"],["k","c / k"],["d","d"],["e","e"],["f","f"],["g","g"],["h","h"],["i","i"],["j","j"],["l","l"],["m","m"],["n","n"],["o","o"],["u","ou / u"],["p","p"],["q","q"],["r","r"],["s","s"],["t","t"],["v","v"],["y","y"],["z","z"],["ch","ch"],["kh","kh"],["tch","tch"],["â","â (gorge)"],["hh","h fort"]];
-$("decMini").innerHTML=ORD.map(([k,l])=>'<div><div class="h">'+gl(S[k][0])+'</div><span class="l">'+l+'</span></div>').join("");
+const ORD=[["a","a"],["b","b"],["k","k"],["d","d"],["e","é"],["f","f"],["g","g"],["h","h"],["i","i"],["j","j"],["l","l"],["m","m"],["n","n"],["o","o"],["u","ou"],["p","p"],["q","q"],["r","r"],["s","s"],["t","t"],["v","v"],["w","w"],["y","y"],["z","z"],["ch","ch"],["kh","kh"],["tch","tch"],["â","â"],["hh","ḥ"]];
+const AIDE=new Set(["a","e","i","o","u"]);
+$("decMini").innerHTML=ORD.filter(([k])=>k!=="w").map(([k,l])=>'<div class="'+(AIDE.has(k)?"aide":"")+'"><div class="h">'+gl(S[k][0])+'</div><span class="l">/'+l+'/</span></div>').join("");
 
-// ===== 3. Assembler =====
-let asmSol=[],asmPick=[],asmTray=[],asmWord="",asmVu=0;
-function asmSet(word){
- asmWord=word;asmVu=0;
- $("asmTarget").textContent=word.toUpperCase();
- asmSol=parse(word).filter(x=>!x.sp&&!x.unk).map(x=>x.k);
- const glyphs=new Set(asmSol.map(k=>S[k][0]));
- const pool=shuffle(Object.keys(S).filter(k=>!glyphs.has(S[k][0])&&!["e","o","v","l","hh","â","tch"].includes(k)));
- const leurres=[];const seen=new Set();
- for(const k of pool){if(!seen.has(S[k][0])){seen.add(S[k][0]);leurres.push(k);}if(leurres.length>=3)break;}
- asmTray=shuffle(asmSol.map((k,i)=>({k,id:"s"+i})).concat(leurres.map((k,i)=>({k,id:"l"+i}))));
+// ===== 3. Écrire le mot en scribe (consonnes + déterminatif) =====
+let A=null,asmPick=[],asmTray=[],asmVu=0;
+const gA=p=>p.t==="d"?DET[p.k][0]:S[p.k][0];
+function asmSet(m){
+ asmVu=0;
+ const sol=filtre(sonsMot(m),0).map(x=>({t:"s",k:x.k,l:x.l})).concat([{t:"d",k:m[2]}]);
+ A={w:m[0],sol};
+ $("asmTarget").textContent=m[0].toUpperCase();
+ const glyphs=new Set(sol.map(gA));
+ const leurres=[],seen=new Set();
+ for(const k of shuffle(Object.keys(S).filter(k=>!["e","o","v","l","hh","â","tch","w","q"].includes(k)))){const g=S[k][0];if(!glyphs.has(g)&&!seen.has(g)){seen.add(g);leurres.push({t:"s",k,l:LAB[k]||k});}if(leurres.length>=3)break;}
+ const dets=shuffle(Object.keys(DET).filter(k=>k!==m[2])).slice(0,2).map(k=>({t:"d",k}));
+ asmTray=shuffle(sol.concat(leurres,dets).map(p=>Object.assign({},p)));
  asmPick=[];$("asmVerdict").textContent="";asmDraw();
 }
 function asmDraw(fb){
  const sl=$("asmSlots");sl.innerHTML="";
- asmSol.forEach((_,i)=>{const d=document.createElement("div");const p=asmPick[i];
-  d.className="slot"+(p?"":" empty")+(fb&&p?(S[p.k][0]===S[asmSol[i]][0]?" ok":" ko"):"");
-  if(p){d.innerHTML='<span class="h">'+gl(S[p.k][0])+'</span>';d.onclick=()=>{asmPick.splice(i,1);$("asmVerdict").textContent="";asmDraw();};}
+ A.sol.forEach((s,i)=>{const d=document.createElement("div");const p=asmPick[i];
+  d.className="slot"+(s.t==="d"?" sdet":"")+(p?"":" empty")+(fb&&p?(gA(p)===gA(s)?" ok":" ko"):"");
+  if(p){d.innerHTML='<span class="h">'+gl(gA(p))+'</span>';d.onclick=()=>{asmPick.splice(i,1);$("asmVerdict").textContent="";asmDraw();};}
+  else if(s.t==="d")d.innerHTML='<small>déterminatif</small>';
   sl.appendChild(d);});
  const tr=$("asmTray");tr.innerHTML="";
- asmTray.forEach(p=>{const d=document.createElement("div");d.className="piece"+(asmPick.includes(p)?" used":"");d.innerHTML='<span class="h">'+gl(S[p.k][0])+'</span><small>'+S[p.k][1]+'</small>';
-  d.onclick=()=>{if(asmPick.length<asmSol.length){asmPick.push(p);$("asmVerdict").textContent="";asmDraw();}};tr.appendChild(d);});
+ asmTray.forEach(p=>{const d=document.createElement("div");d.className="piece"+(p.t==="d"?" pdet":"")+(asmPick.includes(p)?" used":"");
+  d.innerHTML='<span class="h">'+gl(gA(p))+'</span><small>'+(p.t==="d"?DET[p.k][1]:"/"+p.l+"/ "+S[p.k][1])+'</small>';
+  d.onclick=()=>{if(asmPick.length<A.sol.length){asmPick.push(p);$("asmVerdict").textContent="";asmDraw();}};tr.appendChild(d);});
 }
 chips($("asmList"),asmSet,"asm:");
-$("asmRnd").onclick=()=>{$("asmList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));asmSet(TOUS[Math.floor(Math.random()*TOUS.length)]);};
-$("asmGo").onclick=()=>{const v=$("asmIn").value.trim();if(v){asmSet(v);$("asmIn").value="";}};
-$("asmIn").onkeydown=e=>{if(e.key==="Enter")$("asmGo").click();};
-$("asmUndo").onclick=()=>{asmPick.pop();$("asmVerdict").textContent="";asmDraw();};
-$("asmCheck").onclick=()=>{if(!asmSol.length)return;asmDraw(1);
- const ok=asmPick.length===asmSol.length&&asmPick.every((p,i)=>S[p.k][0]===S[asmSol[i]][0]);
+$("asmRnd").onclick=()=>{$("asmList").querySelectorAll(".btn").forEach(x=>x.classList.remove("on"));asmSet(hasard());};
+$("asmUndo").onclick=()=>{if(!A)return;asmPick.pop();$("asmVerdict").textContent="";asmDraw();};
+$("asmCheck").onclick=()=>{if(!A)return;asmDraw(1);
+ const ok=asmPick.length===A.sol.length&&asmPick.every((p,i)=>gA(p)===gA(A.sol[i]));
  const v=$("asmVerdict");v.className="verdict "+(ok?"ok-c":"ko-c");
- v.textContent=ok?"Bravo, scribe ! Le mot est parfait.":(asmPick.length<asmSol.length?"Il manque des signes…":"Pas encore : les cases rouges sont à revoir.");
- if(ok&&!asmVu){gagne("asm:"+simple(asmWord),1);marque($("asmList"),"asm:");}};
-$("asmSol").onclick=()=>{if(!asmSol.length)return;asmVu=1;const used=new Set();asmPick=asmSol.map(k=>{const p=asmTray.find(q=>!used.has(q)&&S[q.k][0]===S[k][0]);used.add(p);return p;});asmDraw(1);$("asmVerdict").textContent="";};
+ v.textContent=ok?"Bravo, scribe ! Le mot est parfait.":(asmPick.length<A.sol.length?"Il manque des signes…":"Pas encore : les cases rouges sont à revoir.");
+ if(ok&&!asmVu){gagne("asm:"+simple(A.w),1);marque($("asmList"),"asm:");}};
+$("asmSol").onclick=()=>{if(!A)return;asmVu=1;const used=new Set();asmPick=A.sol.map(s=>{const p=asmTray.find(q=>!used.has(q)&&gA(q)===gA(s));used.add(p);return p;});asmDraw(1);$("asmVerdict").textContent="";};
 
 // ===== 4. Écrire =====
-const E={cart:0,novow:0,lat:1,nom:1,dir:"ltr"},ein=$("ecrIn");let eNb=0;
+const E={cart:0,voy:0,lat:1,nom:1,dir:"ltr"},ein=$("ecrIn");let eNb=0;
 function eR(tout){
  if(!ein.value.trim()){$("ecrOut").innerHTML='<span style="color:var(--muted);font-size:26px">Les signes apparaîtront ici.</span>';eNb=0;return;}
- const w=render($("ecrOut"),ein.value,Object.assign({},E,{anim:tout?0:eNb}));eNb=w.querySelectorAll(".cell").length;}
+ const w=render($("ecrOut"),filtre(parse(ein.value),E.voy),Object.assign({},E,{anim:tout?0:eNb}));eNb=w.querySelectorAll(".cell").length;}
 ein.oninput=()=>eR(0);
 $("oCart").onclick=function(){E.cart^=1;this.classList.toggle("on",!!E.cart);eR(1);};
-$("oVoy").onclick=function(){E.novow^=1;this.classList.toggle("on",!!E.novow);eR(1);};
+$("oVoy").onclick=function(){E.voy^=1;this.classList.toggle("on",!!E.voy);eR(1);};
 $("oLeg").onclick=function(){E.lat^=1;E.nom=E.lat;this.classList.toggle("on",!E.lat);eNb=999;eR(0);};
 $("oHideIn").onclick=function(){const h=ein.type==="text";ein.type=h?"password":"text";this.classList.toggle("on",h);};
 document.querySelectorAll("[data-dir]").forEach(b=>b.onclick=()=>{E.dir=b.dataset.dir;document.querySelectorAll("[data-dir]").forEach(x=>x.classList.toggle("on",x===b));eR(1);});
 $("oKbd").onclick=function(){const k=$("kbd");const on=k.style.display==="none";k.style.display=on?"grid":"none";this.classList.toggle("on",on);};
-const KEY={u:"ou",â:"ʿ",hh:"ḥ"};
-$("kbd").innerHTML=ORD.map(([k,l])=>'<button data-k="'+(KEY[k]||k)+'"><div class="h">'+gl(S[k][0])+'</div><span>'+l.split(" ")[0]+'</span></button>').join("")+'<button data-k=" "><div class="h" style="font-family:inherit;font-size:22px">espace</div></button><button data-k="DEL"><div class="h" style="font-family:inherit;font-size:22px">⌫</div></button>';
+// touches du clavier : marques spéciales pour les signes qu'on ne peut pas taper autrement
+const KEY={u:"ou",e:"é",â:"ʿ",hh:"ḥ",h:"ʰ",y:"ʸ",q:"ʠ"};
+$("kbd").innerHTML=ORD.filter(([k])=>k!=="w").map(([k,l])=>'<button data-k="'+(KEY[k]||k)+'"><div class="h">'+gl(S[k][0])+'</div><span>/'+l+'/</span></button>').join("")+'<button data-k=" "><div class="h" style="font-family:inherit;font-size:22px">espace</div></button><button data-k="DEL"><div class="h" style="font-family:inherit;font-size:22px">⌫</div></button>';
 $("kbd").querySelectorAll("button").forEach(b=>b.onclick=()=>{const k=b.dataset.k;ein.value=k==="DEL"?Array.from(ein.value).slice(0,-1).join(""):ein.value+k;eR(0);});
 // message secret : le mot est codé dans le lien (#m=…)
 const enc=t=>btoa(unescape(encodeURIComponent(t))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
@@ -749,9 +835,9 @@ function selTxt(){const r=document.createRange();r.selectNodeContents($("lienTxt
 
 // ===== 5. Champollion =====
 // Graphies d'après E. A. W. Budge, The Rosetta Stone (1893), analyse des cartouches de l'obélisque de Philae.
-const PTOL=[["𓊪","P"],["𓏏","T"],["𓍯","O"],["𓃭","L"],["𓐝","M"],["𓇋","I"],["𓇋","I"],["𓋴","S"]];
-const CLEO=[["𓈎","K"],["𓃭","L"],["𓇋","E"],["𓍯","O"],["𓊪","P"],["𓄿","A"],["𓂧","T"],["𓂋","R"],["𓄿","A"],["𓏏","t",1],["𓆇","♀",1]];
-const COMMUNS={"𓊪":"Le tabouret : P comme Ptolémée… et CléoPâtre !","𓍯":"Le lacet : O, dans PtOlémée et CléOpâtre.","𓃭":"Le lion : L, 4ᵉ signe de PtoLémée, 2ᵉ de CLéopâtre.","𓇋":"Le roseau : un son « i / e ». Doublé dans Ptolémée.","𓏏":"Le pain : T dans Ptolémée. Dans Cléopâtre, il est à la fin, avec l'œuf…"};
+const PTOL=[["𓊪","p"],["𓏏","t"],["𓍯","o"],["𓃭","l"],["𓐝","m"],["𓇋","i"],["𓇋","i"],["𓋴","s"]];
+const CLEO=[["𓈎","k"],["𓃭","l"],["𓇋","e"],["𓍯","o"],["𓊪","p"],["𓄿","a"],["𓂧","t"],["𓂋","r"],["𓄿","a"],["𓏏","t",1],["𓆇","♀",1]];
+const COMMUNS={"𓊪":"Le tabouret : le son /p/, dans Ptolémée… et dans Cléopâtre !","𓍯":"Le lacet : le son /o/, dans Ptolémée et dans Cléopâtre.","𓃭":"Le lion : le son /l/, 4ᵉ signe de Ptolémée, 2ᵉ de Cléopâtre.","𓇋":"Le roseau : un son /i/ ou /é/. Doublé dans Ptolémée.","𓏏":"Le pain : le son /t/ dans Ptolémée. Dans Cléopâtre, il est à la fin, avec l'œuf…"};
 let chFound=new Set();
 function chDraw(){
  const bloc=(nom,grec,arr)=>'<div class="cblock"><div class="cname">'+nom+' <small>en grec : '+grec+'</small></div><div class="cartouche"><div class="cart2">'+arr.map(s=>'<div class="csign'+(chFound.has(s[0])?" found":"")+(s[2]?" fem":"")+'" data-g="'+s[0]+'"><div class="h">'+gl(s[0])+'</div><div class="v">'+s[1]+'</div></div>').join("")+'</div></div></div>';
@@ -789,9 +875,12 @@ $("cards").querySelectorAll(".card").forEach(c=>c.onclick=()=>{const v=V[c.datas
  $("showR").onclick=()=>{$("dec").classList.toggle("show-roles");};});
 
 // ===== Tableau des signes =====
-$("grid").innerHTML=ORD.map(([k,l])=>'<div class="tile'+(S[k][2]?" conv":"")+'" data-k="'+k+'"><div class="h">'+gl(S[k][0])+'</div><div class="lat">'+l+'</div><div class="nom">'+S[k][1]+'</div></div>').join("");
+$("grid").innerHTML=ORD.filter(([k])=>k!=="w").map(([k,l])=>'<div class="tile'+(S[k][2]||AIDE.has(k)?" conv":"")+'" data-k="'+k+'" data-l="'+l+'"><div class="h">'+gl(S[k][0])+'</div><div class="lat">/'+l+'/</div><div class="nom">'+S[k][1]+'</div></div>').join("");
 $("grid").querySelectorAll(".tile").forEach(t=>t.onclick=()=>{const k=t.dataset.k,s=S[k];
- openModal('<div class="h big1">'+gl(s[0])+'</div><div style="text-align:center"><div class="answer">'+t.querySelector(".lat").textContent+'</div><div style="font-size:30px">'+s[1]+'</div>'+(s[2]?'<div class="note rouge" style="margin-top:14px;text-align:left">Convention moderne : ce son n\'existait pas en égyptien.'+(k==="l"?' Le lion a cependant servi à noter « l » à l\'époque grecque, par exemple dans le nom de Cléopâtre.':'')+'</div>':'')+'</div>');});
+ let n="";
+ if(AIDE.has(k)&&k!=="e"&&k!=="o")n="En égyptien, ce signe note une <b>consonne faible</b>. Nous le lisons comme la voyelle « "+t.dataset.l+" » : c'est une aide moderne.";
+ else if(s[2])n="Convention moderne : ce son n'existait pas en égyptien. On emprunte un signe proche."+(k==="l"?" Le lion a cependant servi à noter « l » à l'époque grecque, par exemple dans le nom de Cléopâtre.":"");
+ openModal('<div class="h big1">'+gl(s[0])+'</div><div style="text-align:center"><div class="answer">/'+t.dataset.l+'/</div><div style="font-size:30px">'+s[1]+'</div>'+(n?'<div class="note rouge" style="margin-top:14px;text-align:left">'+n+'</div>':'')+'</div>');});
 
 // ===== Modale =====
 function openModal(html){$("mbody").innerHTML=html;$("modal").classList.add("on");}
